@@ -1,5 +1,5 @@
 body{
-    font-size: 14px;
+    font-size: 12px;
 }
 
 #mainnav-container{
@@ -164,24 +164,22 @@ body{
 
 .board-user-list{
     position: fixed;
-    left: 0;
-    top: 170px;
+    left: 100px;
+    bottom: 0;
+    z-index: 9999;
 }
 
 .board-user-list .open-button {
     background-color: #3b4146;
     border: 0 none;
     color: #fff;
-    font-size: 10px;
-    left: 50%;
-    margin-left: -20px;
+    font-size: 14px;
     opacity: 0.4;
     padding: 8px;
 }
 
 .board-user-list .open-button:hover{
     opacity: 1;
-    margin-left: -2px;
     transition: opacity 0.5s linear 0.2s;
 }
 
