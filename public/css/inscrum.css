@@ -164,12 +164,12 @@ body{
 
 .board-user-list{
     position: fixed;
-    left: 100px;
+    right: 100px;
     bottom: 0;
     z-index: 9999;
 }
 
-.board-user-list .open-button {
+.board-user-list .open-button{
     background-color: #3b4146;
     border: 0 none;
     color: #fff;
