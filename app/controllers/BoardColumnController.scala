@@ -1,12 +1,12 @@
 package controllers
 
-import com.inscrum.model.BoardColumn
-import com.inscrum.service.board.BoardColumnService
-import play.api.mvc.Action
-import play.api.mvc.Controller
+import com.inscrum.model.{RelBoardColumnTask, BoardColumn}
+import com.inscrum.service.board.{RelBoardColumnTaskService, BoardColumnService}
+import play.api.mvc.{BodyParsers, Action, Controller}
 import play.api.hal._
 import play.api.mvc.hal._
 import play.api.libs.json._
+import play.api.libs.functional.syntax._
 
 /**
  * Created by jordi on 01/04/2015.
@@ -52,5 +52,31 @@ object BoardColumnController extends Controller{
       HalLink("tasks", routes.TaskController.listByColumn(column.get.id).absoluteURL())
 
     Ok(resource)
+  }
+
+
+
+  def updateTasks = Action(BodyParsers.parse.json) { implicit req =>
+
+    implicit val placeReads: Reads[RelBoardColumnTask] = (
+      (JsPath \ "boardColumnId").read[Int] and
+      (JsPath \ "taskId").read[Int] and
+      (JsPath \ "position").read[Int]
+    )(RelBoardColumnTask.apply _)
+
+    val columnTasks = req.body.validate[List[RelBoardColumnTask]]
+
+    columnTasks.fold(
+      errors => {
+        BadRequest(Json.obj("status" ->"KO", "message" -> JsError.toFlatJson(errors)))
+      },
+      list => {
+        list.foreach(
+          RelBoardColumnTaskService.update(_)
+        )
+        Ok("" + list.size)
+      }
+    )
+
   }
 }

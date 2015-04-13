@@ -16,6 +16,7 @@ GET		/api/board/:id					controllers.BoardController.get(id : Int)
 # Board Columns
 GET     /api/column/:id                 controllers.BoardColumnController.get(id: Int)
 GET     /api/column/columns-by-board/:boardId    controllers.BoardColumnController.listByBoard(boardId : Int)
+POST    /api/column/update-list-columns          controllers.BoardColumnController.updateTasks
 
 # Tasks
 GET     /api/task/tasks-by-board/:boardId       controllers.TaskController.listByBoard(boardId: Int)

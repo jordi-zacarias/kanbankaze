@@ -32,7 +32,8 @@ boardControllers.controller("boardViewCtrl",['$scope', 'boardService', 'taskServ
 						for (var j=0; j<newColumns[i].tasks.length; j++){
 							tasksChanges.push({
 								boardColumnId: newColumns[i].id,
-								taskId: newColumns[i].tasks[j].id
+								taskId: newColumns[i].tasks[j].id,
+								position: j
 							});
 						}
 					}else{
@@ -40,13 +41,16 @@ boardControllers.controller("boardViewCtrl",['$scope', 'boardService', 'taskServ
                             if (newColumns[i].tasks[j].id != oldColumns[i].tasks[j].id){
                                 tasksChanges.push({
 									boardColumnId: newColumns[i].id,
-									taskId: newColumns[i].tasks[j].id
+									taskId: newColumns[i].tasks[j].id,
+									position: j
 								});
                             }
                         }
                     }
                 }
             }
+
+            if (tasksChanges.length > 0) taskService.move(tasksChanges);
         }
     }, true);
 }]);
