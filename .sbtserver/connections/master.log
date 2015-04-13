@@ -1,0 +1,31 @@
+New log file opened at Tue Mar 31 22:39:54 BST 2015 by 8692@jordi-PC
+Taking next connection to: 4493
+New client attempting to connect on port: 4494-4493
+  Address = /192.168.56.1:4493
+This client on port 4494 has uuid 0a0b0848-a406-48fe-92fd-5a2c5e3d37b7 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: play-fork-run-0a0b0848-a406-48fe-92fd-5a2c5e3d37b7
+Taking next connection to: 4493
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 4493
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 4493
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 4493
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 4493
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 4493
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 4493
+Checking to see if clients are empty...
+No non-daemon clients connected after 3 min. Shutting down.
+Server socket thread exiting.
+0 clients open, will close them...
+All client sockets have been closed.
+Closing the 8692@jordi-PC logs at Tue Mar 31 23:00:54 BST 2015, goodbye.

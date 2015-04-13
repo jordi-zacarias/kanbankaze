@@ -1,0 +1,28 @@
+<div class="fixed-table-pagination" style="display: block;">
+    <div class="pull-right pagination-detail">
+        <div class="pull-right pagination">
+            <ul class="pagination">
+                <li class="page-first" ng-class="{disabled: ((startingAt-totalPageSize)<0)}">
+                    <a href="" ng-if="!((startingAt-totalPageSize)<0)" ng-click="triggerPageChanged(0)">{{firstText || "&laquo;" }}</a>
+                    <a href="" ng-if="(startingAt-totalPageSize)<0">{{firstText || "&laquo;" }}</a>
+                </li>
+                <li class="page-pre" ng-class="{disabled: ((startingAt-totalPageSize)<0)}">
+                    <a href="" ng-if="!((startingAt-totalPageSize)<0)" ng-click="triggerPageChanged(startingAt -1)">{{previousText || "&lsaquo;" }}</a>
+                    <a href="" ng-if="(startingAt-totalPageSize)<0">{{previousText || "&lsaquo;" }}</a>
+                </li>
+                <li ng-repeat="p in range(totalPageSize) track by $index" class="page-number hidden-xs" ng-class="{active: ((startingAt + $index)==currentPage)}">
+                    <a href="" ng-click="triggerPageChanged(startingAt + $index)" ng-if="(startingAt + $index)<totalItems">{{startingAt + $index + 1}}</a>
+                </li>
+                <li class="page-next" ng-class="{disabled: ((startingAt + totalPageSize)>=totalItems)}">
+                    <a href="" ng-if="!((startingAt + totalPageSize)>=totalItems)" ng-click="triggerPageChanged(startingAt + totalPageSize)">{{nextText || "&rsaquo;" }}</a>
+                    <a href="" ng-if="(startingAt + totalPageSize)>=totalItems">{{nextText || "&rsaquo;" }}</a>
+                </li>
+                <li class="page-last" ng-class="{disabled: ((startingAt + totalPageSize)>=totalItems)}">
+                    <a href="" ng-if="!((startingAt + totalPageSize)>=totalItems)" ng-click="triggerPageChanged(totalItems-1)">{{lastText || "&raquo;" }}</a>
+                    <a href="" ng-if="(startingAt + totalPageSize)>=totalItems">{{lastText || "&raquo;" }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

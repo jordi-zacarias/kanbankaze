@@ -1,0 +1,68 @@
+<div class="boxed" ng-controller="boardViewCtrl">
+    <div id="content-container">
+        <div id="page-title" class="clearfix">
+            <h1 class="page-header text-overflow pull-left">{{board.title}}</h1>
+
+            <div class="page-buttons pull-right">
+                <button class="btn btn-success btn-labeled fa fa-plus-circle hidden-xs" data-toggle="modal" data-target="#task-edit-modal">New Story</button>
+                <button class="btn btn-success visible-xs"><i class="fa fa-plus-circle" data-toggle="modal" data-target="#task-edit-modal"></i></button>
+            </div>
+        </div>
+
+        <div id="page-content">
+
+            <div class="row">
+                <ul class="board-columns">
+                    <li class="board-column" ng-repeat="column in board.columns">
+                        <div class="panel"><div class="panel-heading">
+                            <h3 class="panel-title">{{column.title}}</h3>
+                        </div>
+                            <div class="panel-body">
+                                <ul class="task-container"  ng-sortable=" {group: column.tasks, animation:150} ">
+                                    <li ng-repeat="task in column.tasks">
+                                        <div>{{task.title}}</div>
+                                        <div>{{task.description}}</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="users" class="board-user-list">
+    <button id="users-button" class="open-button">
+        <i class="fa fa-users fa-2x"></i>
+    </button>
+</div>
+<nav id="mainnav-container">
+    <div id="mainnav">
+        <div id="mainnav-menu-wrap">
+            <div class="nano has-scrollbar">
+                <div class="nano-content" tabindex="0" style="right: -17px;">
+                    <ul id="mainnav-menu" class="list-group">
+                        <li>
+                            <a href=""><img src="/assets/images/profile/dev_48x48.png" alt=""/></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+<div id="task-edit-modal"
+     class="bootbox modal fade in"
+     aria-hidden="true"
+     aria-labelledby="task-edit-modal"
+     tabindex="-1"
+     role="dialog"
+     style="display: none;"
+     ng-include="'assets/js/views/tasks/task-edit.tpl.html'">
+
+</div>

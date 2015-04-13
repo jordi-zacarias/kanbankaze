@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html data-ng-app="inscrumApp">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=latin">
+    <link href="@routes.Assets.at("css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@routes.Assets.at("libs/font-awesome/css/font-awesome.css")" rel="stylesheet" />
+    <link href="@routes.Assets.at("libs/pace/pace.min.css")" rel="stylesheet")" />
+    <link href="@routes.Assets.at("css/base.css")" rel="stylesheet" />
+    <link href="@routes.Assets.at("css/inscrum.css")" rel="stylesheet" />
+
+</head>
+<body class="nifty-ready pace-done show-login" >
+
+<div class="pace pace-inactive">
+    <div class="pace-progress" style="width: 100%;" data-progress-text="100%" data-progress="99">
+        <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
+</div>
+
+<div id="container" class="effect mainnav-sm">
+    <header id="navbar">
+        <div id="navbar-container" class="boxed">
+            <div class="navbar-content clearfix">
+                <a href="index.html" class="navbar-brand">
+                    <img src="@routes.Assets.at("images/logo.png")" alt="Tablet" class="brand-icon">
+                </a>
+                <ul class="nav navbar-top-links pull-right">
+                    <li id="dropdown-user" class="dropdown">
+                        <a href="" data-toggle="dropdown" class="dropdown-toggle text-right">
+                                    <span class="pull-right">
+                                        <img class="img-circle img-user media-object" src="@routes.Assets.at("images/user.png")" alt="Profile Picture">
+                                    </span>
+                            <div class="username hidden-xs">Jordi Zacarias</div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right with-arrow panel-default">
+                            <ul class="head-list">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-question-circle fa-fw fa-lg"></i> Help
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- Dropdown footer -->
+                            <div class="pad-all text-right">
+                                <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modal-logout">
+                                    <i class="fa fa-sign-out fa-fw"></i> Logout
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                                <span>
+                                    <i class="fa fa-clock-o"></i> <clock format="HH:mm"></clock> GMT
+                                </span>
+                    </li>
+                    <li>
+                        <a href="" class="icon-only" data-toggle="modal" data-target="#modal-logout">
+                            <i class="fa fa-power-off"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div ng-view></div>
+
+    <footer id="footer">
+        <div class="hide-fixed pull-right pad-rgt">Version 11.0</div>
+        <p class="pad-lft">&#0169; 2015 inScrum</p>
+    </footer>
+
+    <button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
+
+</div>
+
+<!-- LOGIN PAGE -->
+<div id="login-holder" class="cls-container" style="display:none;" ng-controller="loginCtrl">
+
+    <div id="bg-overlay" class="bg-img img-balloon" style="background-image: url('images/bg-login.jpg');"></div>
+
+    <div class="cls-header cls-header-lg">
+        <div class="cls-brand">
+            <img src="@routes.Assets.at("images/logo-medium.png")" alt="Tablet">
+        </div>
+    </div>
+    <div class="cls-content">
+        <div class="cls-content-sm panel">
+            <div class="panel-alert" ng-control="error">
+                <div class="alert-wrap in">
+                    <div id="alert-message" class="alert alert-danger" role="alert">
+                        <button class="close" type="button" >
+                            <i class="fa fa-times-circle"></i>
+                        </button>
+                        <div class="media">
+                            <strong>Error!</strong>
+                            Bad credentials
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body" >
+                <p class="pad-btm">Sign In to your Account</p>
+                <form ng-submit="login()">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-users"></i></div>
+                            <input type="text" class="form-control" placeholder="Username" ng-model="credentials.username" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                            <input type="password" class="form-control" placeholder="Password" ng-model="credentials.password" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group text-right">
+                                <button class="btn btn-success text-uppercase" type="submit" >Sign In</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END - LOGIN PAGE -->
+
+<div id="modal-logout" class="modal fade in" aria-hidden="true" aria-labelledby="modal-logout" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Logout</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to log out?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-link" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" data-dismiss="modal">Yes, Log me out!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="@routes.Assets.at("libs/angular/angular.js")"></script>
+<script src="@routes.Assets.at("libs/angular/angular-route.min.js")"></script>
+<script src="@routes.Assets.at("libs/angular/angular-cookies.min.js")"></script>
+<script src="@routes.Assets.at("libs/angular/angular-local-storage.min.js")"></script>
+<script src="@routes.Assets.at("libs/angular/angular-hal.js")"></script>
+<script src="@routes.Assets.at("libs/angular/rfc6570.js")"></script>
+<script src="@routes.Assets.at("libs/sortable/Sortable.min.js")"></script>
+
+<script src="@routes.Assets.at("libs/jquery/jquery.min.js")"></script>
+<script src="@routes.Assets.at("libs/bootstrap/bootstrap.min.js")"></script>
+
+<script type='text/javascript'>
+            window.paceOptions = {
+                document: true, // disabled
+                eventLag: true,
+                restartOnPushState: true,
+                restartOnRequestAfter: true,
+                ajax: {
+                    trackMethods: [ 'POST','GET']
+                }
+
+            };
+        </script>
+<script src="@routes.Assets.at("libs/pace/pace.min.js")"></script>
+
+<script src="@routes.Assets.at("js/app.js")"></script>
+
+<script src="@routes.Assets.at("js/commons/appSettings.js")"></script>
+
+<script src="@routes.Assets.at("js/interceptors/http-auth-interceptor.js")"></script>
+
+<script src="@routes.Assets.at("js/services/authenticationService.js")"></script>
+<script src="@routes.Assets.at("js/services/boardServices.js")"></script>
+<script src="@routes.Assets.at("js/services/taskServices.js")"></script>
+
+<script src="@routes.Assets.at("js/directives/commonDirectives.js")"></script>
+<script src="@routes.Assets.at("js/directives/listDirectives.js")"></script>
+<script src="@routes.Assets.at("js/directives/authDirective.js")"></script>
+<script src="@routes.Assets.at("js/directives/ng-sortable.js")"></script>
+
+<script src="@routes.Assets.at("js/controllers/loginController.js")"></script>
+<script src="@routes.Assets.at("js/controllers/boardControllers.js")"></script>
+
+
+</body>
+</html>

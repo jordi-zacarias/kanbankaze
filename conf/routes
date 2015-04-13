@@ -1,0 +1,27 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index
+
+GET     /test   controllers.TestController.createUser
+
+POST     /api/oauth/token            controllers.OAuth2Controller.accessToken
+
+# Boards
+GET		/api/board						controllers.BoardController.list
+GET		/api/board/:id					controllers.BoardController.get(id : Int)
+
+# Board Columns
+GET     /api/column/:id                 controllers.BoardColumnController.get(id: Int)
+GET     /api/column/columns-by-board/:boardId    controllers.BoardColumnController.listByBoard(boardId : Int)
+
+# Tasks
+GET     /api/task/tasks-by-board/:boardId       controllers.TaskController.listByBoard(boardId: Int)
+GET     /api/task/columns-by-column/:columnId    controllers.TaskController.listByColumn(columnId : Int)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
