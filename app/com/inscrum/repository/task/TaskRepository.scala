@@ -1,6 +1,7 @@
 package com.inscrum.repository.task
 
 import com.inscrum.model._
+import com.inscrum.model.task.{TaskTable, Task}
 import scala.slick.lifted.TableQuery
 import scala.slick.driver.MySQLDriver.simple._
 

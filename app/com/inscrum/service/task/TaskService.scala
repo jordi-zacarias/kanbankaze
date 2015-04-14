@@ -1,6 +1,7 @@
 package com.inscrum.service.task
 
-import com.inscrum.model.{RelBoardColumnTask, Task}
+import com.inscrum.model.RelBoardColumnTask
+import com.inscrum.model.task.Task
 import com.inscrum.repository.task.TaskRepository
 import com.inscrum.repository.DB
 

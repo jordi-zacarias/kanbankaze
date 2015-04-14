@@ -1,7 +1,7 @@
 package controllers
 
-import com.inscrum.model.Task
 import com.inscrum.model.RelBoardColumnTask
+import com.inscrum.model.task.Task
 import com.inscrum.service.task.TaskService
 import com.inscrum.service.user.Oauth2DataHandler
 import play.api.mvc.Action

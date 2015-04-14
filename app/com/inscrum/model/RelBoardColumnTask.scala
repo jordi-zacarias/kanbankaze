@@ -1,5 +1,7 @@
 package com.inscrum.model
 
+import com.inscrum.model.task.TaskTable
+
 import scala.slick.driver.MySQLDriver.simple._
 import scala.slick.lifted.PrimaryKey
 

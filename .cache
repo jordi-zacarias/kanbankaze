@@ -285,10 +285,10 @@ C:\PLAY\workspace\test-rest\app\com\inscrum\model\BoardColumn.scala -> com.inscr
 C:\PLAY\workspace\test-rest\app\com\inscrum\model\BoardColumn.scala -> com.inscrum.model.BoardColumnTable$$anonfun$$times$1
 C:\PLAY\workspace\test-rest\app\com\inscrum\model\BoardColumn.scala -> com.inscrum.model.BoardColumnTable$$anonfun$1
 C:\PLAY\workspace\test-rest\app\com\inscrum\model\BoardColumn.scala -> com.inscrum.model.BoardColumnTable$$anonfun$boardTable$1
-C:\PLAY\workspace\test-rest\app\com\inscrum\model\Task.scala -> com.inscrum.model.Task
-C:\PLAY\workspace\test-rest\app\com\inscrum\model\Task.scala -> com.inscrum.model.Task$
-C:\PLAY\workspace\test-rest\app\com\inscrum\model\Task.scala -> com.inscrum.model.TaskTable
-C:\PLAY\workspace\test-rest\app\com\inscrum\model\Task.scala -> com.inscrum.model.TaskTable$$anonfun$$times$1
+C:\PLAY\workspace\test-rest\app\com\inscrum\model\Task.scala -> com.inscrum.model.task.Task
+C:\PLAY\workspace\test-rest\app\com\inscrum\model\Task.scala -> com.inscrum.model.task.Task$
+C:\PLAY\workspace\test-rest\app\com\inscrum\model\Task.scala -> com.inscrum.model.task.TaskTable
+C:\PLAY\workspace\test-rest\app\com\inscrum\model\Task.scala -> com.inscrum.model.task.TaskTable$$anonfun$$times$1
 C:\PLAY\workspace\test-rest\app\com\inscrum\repository\board\BoardColumnRepository.scala -> com.inscrum.repository.board.BoardColumnDAO
 C:\PLAY\workspace\test-rest\app\com\inscrum\repository\board\BoardColumnRepository.scala -> com.inscrum.repository.board.BoardColumnDAO$
 C:\PLAY\workspace\test-rest\app\com\inscrum\repository\board\BoardColumnRepository.scala -> com.inscrum.repository.board.BoardColumnDAO$$anonfun$1
