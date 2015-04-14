@@ -31,6 +31,8 @@ object TaskController extends Controller {
           "description" -> c._1.description,
           "estimation" -> c._1.estimation,
           "acceptanceCriteria" -> c._1.acceptanceCriteria,
+          "blocked" -> c._1.blocked,
+          "blockedReason" -> c._1.blockedReason.get,
           "boardColumnId" -> c._2.boardColumnId,
           "position" -> c._2.position
         )
@@ -56,6 +58,8 @@ object TaskController extends Controller {
           "description" -> c._1.description,
           "estimation" -> c._1.estimation,
           "acceptanceCriteria" -> c._1.acceptanceCriteria,
+          "blocked" -> c._1.blocked,
+          "blockedReason" -> c._1.blockedReason.fold("")(identity),
           "position" -> c._2.position
         )
       }

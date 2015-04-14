@@ -20,8 +20,11 @@
                             <div class="panel-body">
                                 <ul class="task-container"  ng-sortable=" {group: column.tasks, animation:150} ">
                                     <li ng-repeat="task in column.tasks">
+                                        <div class="task-header-buttons">
+                                            <a href="" ng-if="task.blocked"><i class="fa fa-warning task-blocked-icon"></i></a>
+                                            <a href=""><i class="fa fa-edit"></i></a>
+                                        </div>
                                         <div>{{task.title}}</div>
-                                        <div>{{task.description}}</div>
                                     </li>
                                 </ul>
                             </div>

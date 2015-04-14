@@ -1,5 +1,5 @@
 body{
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #mainnav-container{
@@ -181,6 +181,19 @@ body{
 .board-user-list .open-button:hover{
     opacity: 1;
     transition: opacity 0.5s linear 0.2s;
+}
+
+.task-header-buttons{
+    text-align: right;
+    font-size: 14px;
+}
+
+.task-header-buttons a{
+    margin-left: 4px;
+}
+
+.task-blocked-icon{
+    color: red;
 }
 
 @media (max-width: 767px) {

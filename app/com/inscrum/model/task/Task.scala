@@ -12,7 +12,7 @@ case class Task(id: Int,
                 estimation: Int,
                 acceptanceCriteria: String,
                 blocked: Boolean,
-                blockedReason: String)
+                blockedReason: Option[String])
 
 class TaskTable (tag: Tag) extends Table[Task](tag, "TASK") {
 
@@ -22,7 +22,7 @@ class TaskTable (tag: Tag) extends Table[Task](tag, "TASK") {
   def estimation: Column[Int] = column[Int]("estimation")
   def acceptanceCriteria: Column[String] = column[String]("acceptance_criteria")
   def blocked: Column[Boolean] = column[Boolean]("blocked")
-  def blockedReason: Column[String] = column[String]("blocked_reason")
+  def blockedReason: Column[Option[String]] = column[Option[String]]("blocked_reason")
 
   def * = (id, title, description, estimation, acceptanceCriteria, blocked, blockedReason) <> (Task.tupled, Task.unapply _)
 
