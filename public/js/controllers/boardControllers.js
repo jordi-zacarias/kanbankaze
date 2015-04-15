@@ -53,4 +53,36 @@ boardControllers.controller("boardViewCtrl",['$scope', 'boardService', 'taskServ
             if (tasksChanges.length > 0) taskService.move(tasksChanges);
         }
     }, true);
+
+
+    var day_data = [
+        {"dayOfWeek": "", "expected": 60, "real": 60},
+        {"dayOfWeek": "Mon", "expected": 54, "real": 56},
+        {"dayOfWeek": "Tue", "expected": 48, "real": 45},
+        {"dayOfWeek": "Wed", "expected": 42, "real": 40},
+        {"dayOfWeek": "Thu", "expected": 36, "real": 38},
+        {"dayOfWeek": "Fri", "expected": 30, "real": 35},
+        {"dayOfWeek": "Mon", "expected": 24, "real": 30},
+        {"dayOfWeek": "Tue", "expected": 18, "real": 26},
+        {"dayOfWeek": "Wed", "expected": 12, "real": 14},
+        {"dayOfWeek": "Thu", "expected": 6, "real": 5},
+        {"dayOfWeek": "Fri", "expected": 0, "real": 0},
+    ];
+
+    Morris.Line({
+        element: 'burndown-chart',
+        data: day_data,
+        xkey: 'dayOfWeek',
+        labels: 'dayOfWeek',
+        ykeys: ['expected', 'real'],
+        gridEnabled: false,
+        gridLineColor: 'transparent',
+        lineColors: ['red', 'white'],
+        lineWidth: [1,2],
+        pointSize: [0,4],
+        parseTime: false,
+        resize:true,
+        hideHover: 'auto',
+        xLabelAngle: 45
+    });
 }]);

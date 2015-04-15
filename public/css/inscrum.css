@@ -1,5 +1,5 @@
 body{
-    font-size: 14px;
+    font-size: 12px;
 }
 
 #mainnav-container{
@@ -18,6 +18,11 @@ body{
     background-color: #104461;
     margin-left: 0;
 }
+
+#container.mainnav-out .brand-title {
+    color: #fff;
+}
+
 
 #container.mainnav-sm #mainnav-menu a{
     padding: 12px 0 12px 4px;

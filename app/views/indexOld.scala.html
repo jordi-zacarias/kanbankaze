@@ -25,52 +25,14 @@
     <div class="pace-activity"></div>
 </div>
 
-<div id="container" class="effect mainnav-out">
-
-    <!--NAVBAR-->
-    <!--===================================================-->
+<div id="container" class="effect mainnav-lg">
     <header id="navbar">
         <div id="navbar-container" class="boxed">
-
-            <!--Brand logo & name-->
-            <!--================================-->
-            <div class="navbar-header">
-                <a href="index.html" class="navbar-brand">
-                    <img src="@routes.Assets.at("images/logo-default.png")" alt="Nifty Logo" class="brand-icon">
-                    <div class="brand-title">
-                        <span class="brand-text">Kanbankaze</span>
-                    </div>
-                </a>
-            </div>
-            <!--================================-->
-            <!--End brand logo & name-->
-
-
-            <!--Navbar Dropdown-->
-            <!--================================-->
             <div class="navbar-content clearfix">
-                <ul class="nav navbar-top-links pull-left">
-
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle">
-                            <i class="fa fa-users fa-lg"></i>
-                            <span class="badge badge-header badge-info">9</span>
-                        </a>
-                    </li>
-
-                    <!--Notification dropdown-->
-                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                    <li class="dropdown">
-                        <a href="" onclick="$('#burndown-chart-container').slideToggle('slow');">
-                            <i class="fa fa-line-chart fa-lg"></i>
-                        </a>
-                    </li>
-
-                </ul>
+                <a href="index.html" class="navbar-brand">
+                    <img src="@routes.Assets.at("images/logo.png")" alt="Tablet" class="brand-icon">
+                </a>
                 <ul class="nav navbar-top-links pull-right">
-
-                    <!--User dropdown-->
-                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                     <li id="dropdown-user" class="dropdown">
                         <a href="" data-toggle="dropdown" class="dropdown-toggle text-right">
                                     <span class="pull-right">
@@ -81,7 +43,7 @@
                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-right with-arrow panel-default">
                             <ul class="head-list">
                                 <li>
-                                    <a href="">
+                                    <a href="#">
                                         <i class="fa fa-question-circle fa-fw fa-lg"></i> Help
                                     </a>
                                 </li>
@@ -94,8 +56,6 @@
                             </div>
                         </div>
                     </li>
-                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                    <!--End user dropdown-->
                     <li>
                                 <span>
                                     <i class="fa fa-clock-o"></i> <clock format="HH:mm"></clock> GMT
@@ -106,75 +66,19 @@
                             <i class="fa fa-power-off"></i>
                         </a>
                     </li>
-
                 </ul>
             </div>
-            <!--================================-->
-            <!--End Navbar Dropdown-->
-
         </div>
     </header>
-    <!--===================================================-->
-    <!--END NAVBAR-->
 
     <div ng-view></div>
 
-
-
-    <!-- FOOTER -->
-    <!--===================================================-->
     <footer id="footer">
-
-        <!-- Visible when footer positions are fixed -->
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <div class="show-fixed pull-right">
-            <ul class="footer-list list-inline">
-                <li>
-                    <p class="text-sm">SEO Proggres</p>
-                    <div class="progress progress-sm progress-light-base">
-                        <div style="width: 80%" class="progress-bar progress-bar-danger"></div>
-                    </div>
-                </li>
-
-                <li>
-                    <p class="text-sm">Online Tutorial</p>
-                    <div class="progress progress-sm progress-light-base">
-                        <div style="width: 80%" class="progress-bar progress-bar-primary"></div>
-                    </div>
-                </li>
-                <li>
-                    <button class="btn btn-sm btn-dark btn-active-success">Checkout</button>
-                </li>
-            </ul>
-        </div>
-
-
-
-        <!-- Visible when footer positions are static -->
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <div class="hide-fixed pull-right pad-rgt">Currently v2.2</div>
-
-
-
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-        <!-- Remove the class name "show-fixed" and "hide-fixed" to make the content always appears. -->
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-        <p class="pad-lft">&#0169; 2015 Your Company</p>
-
-
-
+        <div class="hide-fixed pull-right pad-rgt">Version 11.0</div>
+        <p class="pad-lft">&#0169; 2015 inScrum</p>
     </footer>
-    <!--===================================================-->
-    <!-- END FOOTER -->
 
-
-    <!-- SCROLL TOP BUTTON -->
-    <!--===================================================-->
     <button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
-    <!--===================================================-->
-
-
 
 </div>
 
