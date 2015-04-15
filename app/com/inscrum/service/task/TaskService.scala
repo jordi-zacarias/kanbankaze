@@ -11,6 +11,12 @@ import com.inscrum.repository.DB
  */
 object TaskService {
 
+  def save(task: Task): Unit ={
+    DB{ implicit session =>
+      TaskRepository.save(task)
+    }
+  }
+
   def getTask(id: Int) : Option[Task] = {
     DB { implicit session =>
       TaskRepository.getTask(id)

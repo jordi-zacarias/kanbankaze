@@ -16,6 +16,8 @@ boardControllers.controller("boardViewCtrl",['$scope', 'boardService', 'taskServ
             columns.items.forEach(function (column){
                 taskService.findByColumn(column.id).then(function (tasks){
                     column.tasks = tasks.items;
+                    var popover = $('.add-popover');
+                    if (popover.length)popover.popover();
                 });
             });
         });
@@ -83,6 +85,7 @@ boardControllers.controller("boardViewCtrl",['$scope', 'boardService', 'taskServ
         parseTime: false,
         resize:true,
         hideHover: 'auto',
-        xLabelAngle: 45
+        xLabelAngle: 45,
+        gridTextColor: '#fff'
     });
 }]);

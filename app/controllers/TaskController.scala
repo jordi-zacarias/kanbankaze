@@ -4,12 +4,10 @@ import com.inscrum.model.RelBoardColumnTask
 import com.inscrum.model.task.Task
 import com.inscrum.service.task.TaskService
 import com.inscrum.service.user.Oauth2DataHandler
-import play.api.mvc.Action
-import play.api.mvc.Controller
+import play.api.mvc.{BodyParsers, Action, Controller}
 import play.api.hal._
 import play.api.mvc.hal._
 import play.api.libs.json._
-
 
 /**
  * Created by jordi on 03/04/2015.
@@ -71,5 +69,16 @@ object TaskController extends Controller {
       HalLink("self", routes.TaskController.listByColumn(columnId).absoluteURL())
 
     Ok(resource)
+  }
+
+  def save = Action(BodyParsers.parse.json) { implicit req =>
+
+    implicit val taskReader : Reads[Task] = Json.reads[Task]
+    implicit val taskWriter : Writes[Task] = Json.writes[Task]
+
+    val task = req.body.validate[Task]
+
+    TaskService.save(task.get)
+    Ok("saved")
   }
 }

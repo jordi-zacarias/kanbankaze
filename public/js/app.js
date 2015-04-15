@@ -6,6 +6,7 @@ var app = angular.module('inscrumApp', [
     'angular-hal',
     'http-auth-interceptor',
     'ng-sortable',
+    'mgcrea.ngStrap',
     
     'inscrum.settings',
 

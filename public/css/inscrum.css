@@ -157,7 +157,7 @@ body{
 
 .task-container > li{
     border: 1px solid #e7ebee;
-    padding: 6px;
+    padding: 8px 6px 14px;
     margin-bottom: 4px;
     cursor: move;
 }
@@ -191,6 +191,9 @@ body{
 .task-header-buttons{
     text-align: right;
     font-size: 14px;
+    border-bottom: 1px solid #e7ebee;
+    margin-bottom: 8px;
+    padding-bottom: 3px;
 }
 
 .task-header-buttons a{
@@ -199,6 +202,26 @@ body{
 
 .task-blocked-icon{
     color: red;
+}
+
+#burndown-chart-container{
+    position:fixed;
+    bottom:0;
+    right:0;
+    background-color: #3b4146;
+    -webkit-box-shadow: -2px -2px 8px 0px rgba(112,111,112,1);
+    -moz-box-shadow: -2px -2px 8px 0px rgba(112,111,112,1);
+    box-shadow: -2px -2px 8px 0px rgba(112,111,112,1);
+    z-index: 9999;
+    color: #fff;
+}
+
+#burndown-chart-container .title{
+    font-size: 14px;
+    border-bottom: 1px solid;
+    margin: 10px 10px 0px;
+    padding-bottom: 4px;
+    font-weight: 600;
 }
 
 @media (max-width: 767px) {

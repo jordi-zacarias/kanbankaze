@@ -15,7 +15,19 @@ object TaskRepository {
   private val boardColumns = TableQuery[BoardColumnTable]
   private val relBoardColumnTask = TableQuery[RelBoardColumnTaskTable]
 
+  def save(task: Task)(implicit s: Session) = {
+
+//    val userWithId =
+//      (users returning users.map(_.id)
+//        into ((user,id) => user.copy(id=Some(id)))
+//        ) += User(None, "Stefan", "Zeiger")
+
+    tasks += task
+
+  }
+
   def getTask(id: Int)(implicit s: Session) : Option[Task] = tasks.filter( _.id === id).firstOption
+
   def getTaskByBoard(boardId: Int)(implicit s: Session) : List[(Task, RelBoardColumnTask)] = {
     (
       for{
@@ -25,6 +37,7 @@ object TaskRepository {
       } yield (t, rct)
     ).sortBy( r => (r._2.boardColumnId, r._2.position)).list
   }
+
   def getTaskByColumn(columnId: Int)(implicit s: Session) : List[(Task, RelBoardColumnTask)] = {
     (
       for{

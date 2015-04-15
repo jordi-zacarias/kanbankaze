@@ -20,8 +20,10 @@
                             <div class="panel-body">
                                 <ul class="task-container"  ng-sortable=" {group: column.tasks, animation:150} ">
                                     <li ng-repeat="task in column.tasks">
+
                                         <div class="task-header-buttons">
-                                            <a href="" ng-if="task.blocked"><i class="fa fa-warning task-blocked-icon"></i></a>
+                                            <div class="pull-left">Story #{{task.id}}</div>
+                                            <a href="" ng-if="task.blocked" data-placement="bottom" title="Blocked Reason" data-content="{{task.blockedReason}}" data-trigger="focus" bs-popover><i class="fa fa-warning task-blocked-icon"></i></a>
                                             <a href=""><i class="fa fa-edit"></i></a>
                                         </div>
                                         <div>{{task.title}}</div>
@@ -50,7 +52,8 @@
 </div>
 -->
 
-<div id="burndown-chart-container" style="position:fixed; bottom:0; right:0; background-color: #3b4146; -webkit-box-shadow: -2px -2px 26px 0px rgba(112,111,112,1); -moz-box-shadow: -2px -2px 26px 0px rgba(112,111,112,1); box-shadow: -2px -2px 26px 0px rgba(112,111,112,1);">
+<div id="burndown-chart-container">
+    <div class="title">Burndown</div>
     <div id="burndown-chart" style="width:400px; height:200px"></div>
 </div>
 
