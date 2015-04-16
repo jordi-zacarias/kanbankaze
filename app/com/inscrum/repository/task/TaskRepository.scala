@@ -15,14 +15,14 @@ object TaskRepository {
   private val boardColumns = TableQuery[BoardColumnTable]
   private val relBoardColumnTask = TableQuery[RelBoardColumnTaskTable]
 
-  def save(task: Task)(implicit s: Session) = {
+  def save(taskToSave: Task)(implicit s: Session) : Task = {
 
 //    val userWithId =
 //      (users returning users.map(_.id)
 //        into ((user,id) => user.copy(id=Some(id)))
 //        ) += User(None, "Stefan", "Zeiger")
 
-    tasks += task
+    (tasks returning tasks.map(_.id) into ((task, id) => task.copy(id, task.title, task.description, task.estimation, task.acceptanceCriteria, task.blocked, task.blockedReason))) += taskToSave
 
   }
 

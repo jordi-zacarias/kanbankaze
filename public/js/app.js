@@ -19,6 +19,7 @@ var app = angular.module('inscrumApp', [
 
     'controllers.board',
     'controllers.login',
+    'controllers.task',
 ]);
 
 app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'localStorageServiceProvider', function($routeProvider, $locationProvider, $httpProvider, localStorageServiceProvider) {

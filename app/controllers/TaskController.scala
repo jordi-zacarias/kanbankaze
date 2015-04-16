@@ -78,7 +78,8 @@ object TaskController extends Controller {
 
     val task = req.body.validate[Task]
 
-    TaskService.save(task.get)
-    Ok("saved")
+    val savedTask = TaskService.save(task.get)
+
+    Ok(Json.toJson[Task](savedTask))
   }
 }

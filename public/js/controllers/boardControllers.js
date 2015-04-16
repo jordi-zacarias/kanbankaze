@@ -23,6 +23,9 @@ boardControllers.controller("boardViewCtrl",['$scope', 'boardService', 'taskServ
         });
     });
 
+    $scope.$on("board:add-task", function(event, data){
+        $scope.board.columns[0].tasks.push(data);
+    });
 
     $scope.$watch("board.columns", function (newColumns, oldColumns){
         var tasksChanges = [];

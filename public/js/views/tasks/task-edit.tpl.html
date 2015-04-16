@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-lg">
+<div class="modal-dialog modal-lg" ng-controller="taskEditCtrl">
     <div class="modal-content">
         <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal">
@@ -13,23 +13,23 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <lable class="col-sm-2 control-label" for="title">Title</lable>
-                            <div class="col-sm-10"><input type="text" name="title" class="form-control"/></div>
+                            <div class="col-sm-10"><input type="text" name="title" class="form-control" ng-model="task.title"/></div>
                         </div>
                         <div class="form-group">
-                            <lable class="col-sm-2 control-label" for="title">Description</lable>
-                            <div class="col-sm-10"><textarea class="form-control"></textarea></div>
+                            <lable class="col-sm-2 control-label" for="description">Description</lable>
+                            <div class="col-sm-10"><textarea name="description" class="form-control" ng-model="task.description"></textarea></div>
                         </div>
 
                         <div class="form-group">
-                            <lable class="col-sm-2 control-label" for="title">Estimation</lable>
+                            <lable class="col-sm-2 control-label" for="estimation">Estimation</lable>
                             <div class="col-sm-10">
-                                <input type="text" name="estimation" class="form-control"/>
+                                <input type="text" name="estimation" class="form-control" ng-model="task.estimation"/>
                                 <small class="help-block">Hours are evil. Use points intead</small>
                             </div>
                         </div>
                         <div class="form-group">
                             <lable class="col-sm-2 control-label" for="title">Acceptance Criteria</lable>
-                            <div class="col-sm-10"><textarea class="form-control"></textarea></div>
+                            <div class="col-sm-10"><textarea name="acceptanceCriteria" class="form-control" ng-model="task.acceptanceCriteria"></textarea></div>
                         </div>
 
                     </form>
@@ -39,7 +39,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn btn-link" type="button" data-dismiss="modal">Cancel</button>
-            <button class="btn btn-success" data-dismiss="modal">Save</button>
+            <button class="btn btn-success" ng-click="save()">Save</button>
         </div>
     </div>
 </div>

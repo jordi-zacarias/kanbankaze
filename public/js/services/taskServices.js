@@ -7,6 +7,7 @@ taskServices.factory('taskService', ['$http', 'halClient', 'appSettings', functi
     var taskByBoardUrl = appSettings.apiBaseUri + "/task/tasks-by-board/";
     var taskByColumnUrl = appSettings.apiBaseUri + "/task/columns-by-column/";
     var moveUrl = appSettings.apiBaseUri + "/column/update-list-columns";
+    var saveUrl = appSettings.apiBaseUri + "/task";
 
     return {
         findByBoard: function (boardId){
@@ -19,6 +20,10 @@ taskServices.factory('taskService', ['$http', 'halClient', 'appSettings', functi
 
         move: function(columnTasks){
             return halClient.$post(moveUrl, {}, columnTasks);
+        },
+
+        save: function(task){
+            return halClient.$post(saveUrl, {}, task);
         }
     }
 }]);
