@@ -2,7 +2,6 @@
     <div id="content-container">
         <div id="page-title" class="clearfix">
             <h1 class="page-header text-overflow pull-left">{{board.title}}</h1>
-
             <div class="page-buttons pull-right">
                 <button class="btn btn-success btn-labeled fa fa-plus-circle hidden-xs" data-toggle="modal" data-target="#task-edit-modal">New Story</button>
                 <button class="btn btn-success visible-xs"><i class="fa fa-plus-circle" data-toggle="modal" data-target="#task-edit-modal"></i></button>
@@ -22,9 +21,17 @@
                                     <li ng-repeat="task in column.tasks">
 
                                         <div class="task-header-buttons">
-                                            <div class="pull-left">Story #{{task.id}}</div>
+                                            <div class="pull-left">#{{task.id}}</div>
                                             <a href="" ng-if="task.blocked" data-placement="bottom" title="Blocked Reason" data-content="{{task.blockedReason}}" data-trigger="focus" bs-popover><i class="fa fa-warning task-blocked-icon"></i></a>
-                                            <a href=""><i class="fa fa-edit"></i></a>
+                                            <div class="btn-group">
+                                                <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-gear"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li><a href="" data-toggle="modal" data-target="#task-log-points-modal">Log Points</a></li>
+                                                    <li><a href="">Edit Story</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="">Delete</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                         <div>{{task.title}}</div>
                                     </li>
@@ -52,9 +59,9 @@
 </div>
 -->
 
-<div id="burndown-chart-container">
+<div id="burndown-chart-container" style="display:none;">
     <div class="title">Burndown</div>
-    <div id="burndown-chart" style="width:400px; height:200px"></div>
+    <div id="burndown-chart" style="width:400px; height:200px;"></div>
 </div>
 
 <div id="task-edit-modal"
@@ -65,5 +72,16 @@
      role="dialog"
      style="display: none;"
      ng-include="'assets/js/views/tasks/task-edit.tpl.html'">
+
+</div>
+
+<div id="task-log-points-modal"
+     class="bootbox modal fade in"
+     aria-hidden="true"
+     aria-labelledby="task-edit-modal"
+     tabindex="-1"
+     role="dialog"
+     style="display: none;"
+     ng-include="'assets/js/views/tasks/task-points.tpl.html'">
 
 </div>

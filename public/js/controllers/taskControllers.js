@@ -32,3 +32,8 @@ loginControllers.controller("taskEditCtrl",
     resetTaskInfo();
 
 }]);
+
+loginControllers.controller("taskPointsCtrl",
+    ['$scope', '$rootScope', 'taskService', function($scope, $rootScope, taskService) {
+
+}]);

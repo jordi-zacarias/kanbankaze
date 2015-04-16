@@ -209,9 +209,9 @@ body{
     bottom:0;
     right:0;
     background-color: #3b4146;
-    -webkit-box-shadow: -2px -2px 8px 0px rgba(112,111,112,1);
-    -moz-box-shadow: -2px -2px 8px 0px rgba(112,111,112,1);
-    box-shadow: -2px -2px 8px 0px rgba(112,111,112,1);
+    -webkit-box-shadow: -2px -2px 4px 0px rgba(112,111,112,1);
+    -moz-box-shadow: -2px -2px 4px 0px rgba(112,111,112,1);
+    box-shadow: -2px -2px 4px 0px rgba(112,111,112,1);
     z-index: 9999;
     color: #fff;
 }
@@ -223,6 +223,8 @@ body{
     padding-bottom: 4px;
     font-weight: 600;
 }
+
+#burndown-chart svg { width: 100% !important; }
 
 @media (max-width: 767px) {
     
