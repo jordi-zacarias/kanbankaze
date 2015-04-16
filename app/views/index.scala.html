@@ -185,7 +185,7 @@
 
     <div class="cls-header cls-header-lg">
         <div class="cls-brand">
-            <img src="@routes.Assets.at("images/logo-medium.png")" alt="Tablet">
+            <img src="@routes.Assets.at("images/logo-default.png")" alt="Tablet">
         </div>
     </div>
     <div class="cls-content">
@@ -234,7 +234,7 @@
 
 <div id="modal-logout" class="modal fade in" aria-hidden="true" aria-labelledby="modal-logout" tabindex="-1" role="dialog" style="display: none;">
     <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+        <div class="modal-content" ng-controller="logoutCtrl">
             <div class="modal-header">
                 <button class="close" type="button" data-dismiss="modal">
                     <span aria-hidden="true">×</span>
@@ -246,7 +246,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-link" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary" data-dismiss="modal">Yes, Log me out!</button>
+                <button class="btn btn-primary" data-dismiss="modal" ng-click="logout()">Yes, Log me out!</button>
             </div>
         </div>
     </div>

@@ -67,6 +67,7 @@ loginControllers.controller("logoutCtrl",['$scope', '$location', 'localStorageSe
     function($scope, $location, localStorageService) {
     
     $scope.logout = function(){
+    alert("hee");
         localStorageService.clearAll();
         $location.path("/");
     };
