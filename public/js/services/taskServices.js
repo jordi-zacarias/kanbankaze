@@ -7,6 +7,7 @@ taskServices.factory('taskService', ['$http', 'halClient', 'appSettings', functi
     var taskByBoardUrl = appSettings.apiBaseUri + "/task/tasks-by-board/";
     var taskByColumnUrl = appSettings.apiBaseUri + "/task/columns-by-column/";
     var moveUrl = appSettings.apiBaseUri + "/column/update-list-columns";
+    var addToColumnUrl = appSettings.apiBaseUri + "/column/insert-task";
     var saveUrl = appSettings.apiBaseUri + "/task";
 
     return {
@@ -20,6 +21,15 @@ taskServices.factory('taskService', ['$http', 'halClient', 'appSettings', functi
 
         move: function(columnTasks){
             return halClient.$post(moveUrl, {}, columnTasks);
+        },
+
+        addToColumn: function(task, columnId, position){
+            var data = {
+                boardColumnId: columnId,
+                taskId: task.id,
+                position: position
+            }
+            return halClient.$post(addToColumnUrl, {}, data);
         },
 
         save: function(task){

@@ -13,6 +13,12 @@ import play.api.libs.functional.syntax._
  */
 object BoardColumnController extends Controller{
 
+  implicit val relBoardColumnTaskReads: Reads[RelBoardColumnTask] = (
+    (JsPath \ "boardColumnId").read[Int] and
+      (JsPath \ "taskId").read[Int] and
+      (JsPath \ "position").read[Int]
+  )(RelBoardColumnTask.apply _)
+
   def listByBoard(boardId: Int) = Action { implicit req =>
 
     val columns = BoardColumnService.getColumnsByBoard(boardId)
@@ -54,15 +60,15 @@ object BoardColumnController extends Controller{
     Ok(resource)
   }
 
+  def insertTasks = Action(BodyParsers.parse.json) { implicit req =>
 
+    val columnTask = req.body.validate[RelBoardColumnTask]
+    RelBoardColumnTaskService.save(columnTask.get)
+
+    Ok("inserted")
+  }
 
   def updateTasks = Action(BodyParsers.parse.json) { implicit req =>
-
-    implicit val placeReads: Reads[RelBoardColumnTask] = (
-      (JsPath \ "boardColumnId").read[Int] and
-      (JsPath \ "taskId").read[Int] and
-      (JsPath \ "position").read[Int]
-    )(RelBoardColumnTask.apply _)
 
     val columnTasks = req.body.validate[List[RelBoardColumnTask]]
 
@@ -77,6 +83,5 @@ object BoardColumnController extends Controller{
         Ok("" + list.size)
       }
     )
-
   }
 }

@@ -9,7 +9,13 @@ import com.inscrum.repository.DB
  */
 object RelBoardColumnTaskService {
 
-  def update(relBoardColumnTask: RelBoardColumnTask): Unit ={
+  def save(relBoardColumnTask: RelBoardColumnTask) = {
+    DB { implicit session =>
+      RelBoardColumnTaskRepository.save(relBoardColumnTask)
+    }
+  }
+
+  def update(relBoardColumnTask: RelBoardColumnTask): Unit = {
     DB { implicit session =>
       RelBoardColumnTaskRepository.update(relBoardColumnTask)
     }

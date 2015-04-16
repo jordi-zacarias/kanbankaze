@@ -6,7 +6,7 @@ var boardControllers = angular.module("controllers.board", []);
 boardControllers.controller("boardViewCtrl",['$scope', 'boardService', 'taskService', function($scope, boardService, taskService) {
 
     var boardId = 1;
-
+    $scope.refreshBoard = false;
     $scope.board = {}
 
     boardService.get(boardId).then(function (board){
@@ -15,6 +15,7 @@ boardControllers.controller("boardViewCtrl",['$scope', 'boardService', 'taskServ
             $scope.board.columns = columns.items;
             columns.items.forEach(function (column){
                 taskService.findByColumn(column.id).then(function (tasks){
+                    $scope.refreshBoard = false;
                     column.tasks = tasks.items;
                     var popover = $('.add-popover');
                     if (popover.length)popover.popover();
@@ -23,14 +24,19 @@ boardControllers.controller("boardViewCtrl",['$scope', 'boardService', 'taskServ
         });
     });
 
-    $scope.$on("board:add-task", function(event, data){
-        $scope.board.columns[0].tasks.push(data);
+    $scope.$on("board:add-task", function(event, task){
+
+        taskService.addToColumn(task, $scope.board.columns[0].id, $scope.board.columns[0].tasks.length).then(function (result){
+            $scope.refreshBoard = false;
+            $scope.board.columns[0].tasks.push(task);
+        });
+
     });
 
     $scope.$watch("board.columns", function (newColumns, oldColumns){
         var tasksChanges = [];
 
-        if (newColumns){
+        if ($scope.refreshBoard){
             for (var i=0; i<newColumns.length; i++){
                 if (newColumns[i].tasks){
                     if (newColumns[i].tasks.length != oldColumns[i].tasks.length){
@@ -57,6 +63,8 @@ boardControllers.controller("boardViewCtrl",['$scope', 'boardService', 'taskServ
 
             if (tasksChanges.length > 0) taskService.move(tasksChanges);
         }
+
+        $scope.refreshBoard = true;
     }, true);
 
 

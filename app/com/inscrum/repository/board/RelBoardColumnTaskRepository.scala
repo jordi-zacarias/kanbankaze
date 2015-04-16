@@ -11,6 +11,8 @@ object RelBoardColumnTaskRepository {
 
   private val columnTasks = TableQuery[RelBoardColumnTaskTable]
 
+  def save(relBoardColumnTask: RelBoardColumnTask)(implicit s: Session) = columnTasks += relBoardColumnTask
+
   def update(relBoardColumnTask: RelBoardColumnTask)(implicit s: Session): Unit ={
     columnTasks.filter(_.taskId === relBoardColumnTask.taskId)
     .map( c => (c.boardColumnId, c.position))
