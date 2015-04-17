@@ -24,7 +24,8 @@ loginControllers.controller("taskEditCtrl",
             function(savedTask){
                 resetTaskInfo();
                 $rootScope.$broadcast("board:add-task", savedTask);
-                 $('#task-edit-modal').modal('hide');
+
+                $('#task-edit-modal').modal('hide');
             }
         );
     }
@@ -33,7 +34,20 @@ loginControllers.controller("taskEditCtrl",
 
 }]);
 
-loginControllers.controller("taskPointsCtrl",
-    ['$scope', '$rootScope', 'taskService', function($scope, $rootScope, taskService) {
+loginControllers.controller("taskPointsCtrl", ['$scope', 'taskService', function($scope, $rootScope, taskService) {
 
+    $scope.task = null;
+
+    $scope.$on("task:setting-task", function(event, task){
+        $scope.task = task;
+    });
+}]);
+
+loginControllers.controller("taskDeleteCtrl", ['$scope', 'taskService', function($scope, $rootScope, taskService) {
+
+    $scope.task = null;
+
+    $scope.$on("task:setting-task", function(event, task){
+        $scope.task = task;
+    });
 }]);

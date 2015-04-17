@@ -26,10 +26,10 @@
                                             <div class="btn-group">
                                                 <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-gear"></i></a>
                                                 <ul class="dropdown-menu dropdown-menu-right">
-                                                    <li><a href="" data-toggle="modal" data-target="#task-log-points-modal">Log Points</a></li>
+                                                    <li><a href="" ng-click="openPointsEditor(task)">Log Points</a></li>
                                                     <li><a href="">Edit Story</a></li>
                                                     <li class="divider"></li>
-                                                    <li><a href="">Delete</a></li>
+                                                    <li><a href="" ng-click="openDeleteEditor(task)">Delete</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -72,7 +72,6 @@
      role="dialog"
      style="display: none;"
      ng-include="'assets/js/views/tasks/task-edit.tpl.html'">
-
 </div>
 
 <div id="task-log-points-modal"
@@ -83,5 +82,14 @@
      role="dialog"
      style="display: none;"
      ng-include="'assets/js/views/tasks/task-points.tpl.html'">
+</div>
 
+<div id="task-delete-modal"
+     class="bootbox modal fade in"
+     aria-hidden="true"
+     aria-labelledby="task-edit-modal"
+     tabindex="-1"
+     role="dialog"
+     style="display: none;"
+     ng-include="'assets/js/views/tasks/task-delete.tpl.html'">
 </div>

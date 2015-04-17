@@ -3,7 +3,7 @@
 var boardControllers = angular.module("controllers.board", []);
 
 
-boardControllers.controller("boardViewCtrl",['$scope', 'boardService', 'taskService', function($scope, boardService, taskService) {
+boardControllers.controller("boardViewCtrl",['$scope', '$rootScope', 'boardService', 'taskService', function($scope, $rootScope, boardService, taskService) {
 
     var boardId = 1;
     $scope.refreshBoard = false;
@@ -24,8 +24,17 @@ boardControllers.controller("boardViewCtrl",['$scope', 'boardService', 'taskServ
         });
     });
 
-    $scope.$on("board:add-task", function(event, task){
+    $scope.openPointsEditor = function(task){
+        $rootScope.$broadcast("task:setting-task", task);
+        $("#task-log-points-modal").modal("show");
+    }
 
+    $scope.openDeleteEditor = function(task){
+        $rootScope.$broadcast("task:setting-task", task);
+        $("#task-delete-modal").modal("show");
+    }
+
+    $scope.$on("board:add-task", function(event, task){
         taskService.addToColumn(task, $scope.board.columns[0].id, $scope.board.columns[0].tasks.length).then(function (result){
             $scope.refreshBoard = false;
             $scope.board.columns[0].tasks.push(task);
