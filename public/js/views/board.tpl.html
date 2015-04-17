@@ -22,9 +22,9 @@
 
                                         <div class="task-header-buttons">
                                             <div class="pull-left">#{{task.id}}</div>
-                                            <a href="" ng-if="task.blocked" data-placement="bottom" title="Blocked Reason" data-content="{{task.blockedReason}}" data-trigger="focus" bs-popover><i class="fa fa-warning task-blocked-icon"></i></a>
+                                            <a href="" ng-if="task.blocked" class="button-option" data-placement="bottom" title="Blocked Reason" data-content="{{task.blockedReason}}" data-trigger="focus" bs-popover><i class="fa fa-warning task-blocked-icon"></i></a>
                                             <div class="btn-group">
-                                                <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-gear"></i></a>
+                                                <a href="" class="button-option" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-gear"></i></a>
                                                 <ul class="dropdown-menu dropdown-menu-right">
                                                     <li><a href="" ng-click="openPointsEditor(task)">Log Points</a></li>
                                                     <li><a href="">Edit Story</a></li>

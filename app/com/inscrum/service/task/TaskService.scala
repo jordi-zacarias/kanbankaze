@@ -2,6 +2,7 @@ package com.inscrum.service.task
 
 import com.inscrum.model.RelBoardColumnTask
 import com.inscrum.model.task.Task
+import com.inscrum.repository.board.RelBoardColumnTaskRepository
 import com.inscrum.repository.task.TaskRepository
 import com.inscrum.repository.DB
 
@@ -14,6 +15,15 @@ object TaskService {
   def save(task: Task): Task ={
     DB{ implicit session =>
       TaskRepository.save(task)
+    }
+  }
+
+  def delete(taskId: Int) = {
+    DB{ implicit session =>
+      session.withTransaction {
+        RelBoardColumnTaskRepository.deleteTask(taskId)
+        TaskRepository.delete(taskId)
+      }
     }
   }
 

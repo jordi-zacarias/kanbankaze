@@ -34,6 +34,10 @@ taskServices.factory('taskService', ['$http', 'halClient', 'appSettings', functi
 
         save: function(task){
             return halClient.$post(saveUrl, {}, task);
+        },
+
+        delete: function(task){
+            return halClient.$del(saveUrl + "/" + task.id);
         }
     }
 }]);

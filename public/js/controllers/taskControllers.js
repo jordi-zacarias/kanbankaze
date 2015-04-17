@@ -43,11 +43,15 @@ loginControllers.controller("taskPointsCtrl", ['$scope', 'taskService', function
     });
 }]);
 
-loginControllers.controller("taskDeleteCtrl", ['$scope', 'taskService', function($scope, $rootScope, taskService) {
+loginControllers.controller("taskDeleteCtrl", ['$scope', 'taskService', function($scope, taskService) {
 
     $scope.task = null;
 
     $scope.$on("task:setting-task", function(event, task){
         $scope.task = task;
     });
+
+    $scope.delete = function(){
+        taskService.delete($scope.task);
+    }
 }]);

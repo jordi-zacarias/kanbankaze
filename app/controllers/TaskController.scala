@@ -82,4 +82,11 @@ object TaskController extends Controller {
 
     Ok(Json.toJson[Task](savedTask))
   }
+
+  def delete (taskId: Int) = Action { implicit req =>
+
+    TaskService.delete(taskId)
+
+    Ok("deleted")
+  }
 }

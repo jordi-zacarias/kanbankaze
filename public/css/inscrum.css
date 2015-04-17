@@ -196,8 +196,13 @@ body{
     padding-bottom: 3px;
 }
 
-.task-header-buttons a{
+.task-header-buttons .button-option{
     margin-left: 4px;
+    opacity: 0.6;
+}
+
+.task-header-buttons .button-option:hover{
+    opacity: 1;
 }
 
 .task-blocked-icon{

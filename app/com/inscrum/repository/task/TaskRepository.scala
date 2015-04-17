@@ -17,13 +17,11 @@ object TaskRepository {
 
   def save(taskToSave: Task)(implicit s: Session) : Task = {
 
-//    val userWithId =
-//      (users returning users.map(_.id)
-//        into ((user,id) => user.copy(id=Some(id)))
-//        ) += User(None, "Stefan", "Zeiger")
-
     (tasks returning tasks.map(_.id) into ((task, id) => task.copy(id, task.title, task.description, task.estimation, task.acceptanceCriteria, task.blocked, task.blockedReason))) += taskToSave
+  }
 
+  def delete(taskId : Int)(implicit s: Session) = {
+    tasks.filter(t => t.id === taskId).delete
   }
 
   def getTask(id: Int)(implicit s: Session) : Option[Task] = tasks.filter( _.id === id).firstOption
