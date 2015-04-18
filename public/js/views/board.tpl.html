@@ -26,10 +26,10 @@
                                             <div class="btn-group">
                                                 <a href="" class="button-option" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-gear"></i></a>
                                                 <ul class="dropdown-menu dropdown-menu-right">
-                                                    <li><a href="" ng-click="openPointsEditor(task)">Log Points</a></li>
+                                                    <li><a href="" ng-click="openPointsEditor($parent.$index, $index, task)">Log Points</a></li>
                                                     <li><a href="">Edit Story</a></li>
                                                     <li class="divider"></li>
-                                                    <li><a href="" ng-click="openDeleteEditor(task)">Delete</a></li>
+                                                    <li><a href="" ng-click="openDeleteEditor($parent.$index, $index, task)">Delete</a></li>
                                                 </ul>
                                             </div>
                                         </div>

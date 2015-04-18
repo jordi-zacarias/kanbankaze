@@ -43,15 +43,18 @@ loginControllers.controller("taskPointsCtrl", ['$scope', 'taskService', function
     });
 }]);
 
-loginControllers.controller("taskDeleteCtrl", ['$scope', 'taskService', function($scope, taskService) {
+loginControllers.controller("taskDeleteCtrl", ['$scope', '$rootScope', 'taskService', function($scope, $rootScope, taskService) {
 
-    $scope.task = null;
+    $scope.taskInfo = null;
 
-    $scope.$on("task:setting-task", function(event, task){
-        $scope.task = task;
+    $scope.$on("task:setting-task", function(event, taskInfo){
+        $scope.taskInfo = taskInfo;
     });
 
     $scope.delete = function(){
-        taskService.delete($scope.task);
+        taskService.delete($scope.taskInfo.task).then(function(){
+            $rootScope.$broadcast("board:remove-task", $scope.taskInfo);
+            $("#task-delete-modal").modal("hide");
+        });
     }
 }]);

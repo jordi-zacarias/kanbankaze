@@ -24,13 +24,23 @@ boardControllers.controller("boardViewCtrl",['$scope', '$rootScope', 'boardServi
         });
     });
 
-    $scope.openPointsEditor = function(task){
-        $rootScope.$broadcast("task:setting-task", task);
+    $scope.openPointsEditor = function(columnIndex, taskIndex, task){
+        var taskInfo = {
+                    columnIndex: columnIndex,
+                    taskIndex: taskIndex,
+                    task: task
+                }
+        $rootScope.$broadcast("task:setting-task", taskInfo);
         $("#task-log-points-modal").modal("show");
     }
 
-    $scope.openDeleteEditor = function(task){
-        $rootScope.$broadcast("task:setting-task", task);
+    $scope.openDeleteEditor = function(columnIndex, taskIndex, task){
+        var taskInfo = {
+            columnIndex: columnIndex,
+            taskIndex: taskIndex,
+            task: task
+        }
+        $rootScope.$broadcast("task:setting-task", taskInfo);
         $("#task-delete-modal").modal("show");
     }
 
@@ -40,6 +50,12 @@ boardControllers.controller("boardViewCtrl",['$scope', '$rootScope', 'boardServi
             $scope.board.columns[0].tasks.push(task);
         });
 
+    });
+
+    $scope.$on("board:remove-task", function(event, taskInfo){
+        console.log("column Id: " + taskInfo.columnIndex);
+        console.log("task Id: " + taskInfo.taskIndex);
+        $scope.board.columns[taskInfo.columnIndex].tasks.splice(taskInfo.taskIndex,1);
     });
 
     $scope.$watch("board.columns", function (newColumns, oldColumns){
