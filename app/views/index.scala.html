@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=latin">
     <link href="@routes.Assets.at("css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@routes.Assets.at("libs/bootstrap-datepicker/bootstrap-datepicker.css")" rel="stylesheet" />
     <link href="@routes.Assets.at("libs/font-awesome/css/font-awesome.css")" rel="stylesheet" />
     <link href="@routes.Assets.at("libs/pace/pace.min.css")" rel="stylesheet")" />
     <link href="@routes.Assets.at("css/base.css")" rel="stylesheet" />
@@ -30,7 +31,7 @@
     <!--NAVBAR-->
     <!--===================================================-->
     <header id="navbar">
-        <div id="navbar-container" class="boxed">
+        <div id="navbar-container" class="boxed" ng-controller="navbarCtrl">
 
             <!--Brand logo & name-->
             <!--================================-->
@@ -52,9 +53,9 @@
                 <ul class="nav navbar-top-links pull-left">
 
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle">
+                        <a href="" ng-click="toggleAside()">
                             <i class="fa fa-users fa-lg"></i>
-                            <span class="badge badge-header badge-info">9</span>
+                            <span class="badge badge-header badge-info">5</span>
                         </a>
                     </li>
 
@@ -262,6 +263,7 @@
 
 <script src="@routes.Assets.at("libs/jquery/jquery.min.js")"></script>
 <script src="@routes.Assets.at("libs/bootstrap/bootstrap.min.js")"></script>
+<script src="@routes.Assets.at("libs/bootstrap-datepicker/bootstrap-datepicker.js")"></script>
 
 <script src="@routes.Assets.at("libs/angular-strap/angular-strap.min.js")"></script>
 <script src="@routes.Assets.at("libs/angular-strap/angular-strap.tpl.min.js")"></script>
@@ -299,6 +301,7 @@
 <script src="@routes.Assets.at("js/directives/authDirective.js")"></script>
 <script src="@routes.Assets.at("js/directives/ng-sortable.js")"></script>
 
+<script src="@routes.Assets.at("js/controllers/generalControllers.js")"></script>
 <script src="@routes.Assets.at("js/controllers/loginController.js")"></script>
 <script src="@routes.Assets.at("js/controllers/boardControllers.js")"></script>
 <script src="@routes.Assets.at("js/controllers/taskControllers.js")"></script>

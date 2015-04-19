@@ -2,7 +2,7 @@ body{
     font-size: 12px;
 }
 
-#mainnav-container{
+mainnav-container{
     background-color: #32404e;
 }
 
@@ -11,11 +11,11 @@ body{
 }
 
 .navbar-header::before {
-    background-color: #104461;
+    background-color: #32404e;
 }
 
 .navbar-content {
-    background-color: #104461;
+    background-color: #32404e;
     margin-left: 0;
 }
 
@@ -44,6 +44,10 @@ body{
     margin-top: 10px;
     margin-left: 10px;
     width: 32px;
+}
+
+#aside{
+    border-right: 4px solid #54abd9;
 }
 
 .label{

@@ -37,10 +37,16 @@ loginControllers.controller("taskEditCtrl",
 loginControllers.controller("taskPointsCtrl", ['$scope', 'taskService', function($scope, $rootScope, taskService) {
 
     $scope.task = null;
+    $scope.points = {
+        date: "",
+        assigned: ""
+    }
 
-    $scope.$on("task:setting-task", function(event, task){
-        $scope.task = task;
+    $scope.$on("task:setting-task", function(event, taskInfo){
+        $scope.taskInfo = taskInfo;
     });
+
+    $('#pointsDate').datepicker({format:'dd/mm/yyyy', autoclose:true});
 }]);
 
 loginControllers.controller("taskDeleteCtrl", ['$scope', '$rootScope', 'taskService', function($scope, $rootScope, taskService) {

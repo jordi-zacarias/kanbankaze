@@ -17,6 +17,7 @@ var app = angular.module('inscrumApp', [
     'directives.common',
     'directives.list',
 
+    'controllers.general',
     'controllers.board',
     'controllers.login',
     'controllers.task',
