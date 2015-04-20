@@ -18,7 +18,7 @@
                         </div>
                             <div class="panel-body">
                                 <ul class="task-container"  ng-sortable=" {group: column.tasks, animation:150} ">
-                                    <li ng-repeat="task in column.tasks">
+                                    <li ng-repeat="task in column.tasks" ng-drop="true" ng-drop-success="onDropComplete($data,$event, task)">
 
                                         <div class="task-header-buttons">
                                             <div class="pull-left">#{{task.id}}</div>
@@ -34,6 +34,11 @@
                                             </div>
                                         </div>
                                         <div>{{task.title}}</div>
+                                        <div>
+                                            <span ng-repeat="user in task.users">
+                                                <img class="img-xs" src="{{user.avatar}}" />
+                                            </span>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -46,55 +51,19 @@
 
     <aside id="aside-container">
         <div id="aside">
-            <div class="nano has-scrollbar">
+            <div class="nano has-scrollbar" ng-controller="teamListCtrl">
                 <h4 class="pad-hor text-thin">
                     <span class="pull-right badge badge-info">5</span>
                     Team
                 </h4>
                 <div class="list-group bg-trans">
-                    <a class="list-group-item" href="#">
+                    <a class="list-group-item" href="" ng-repeat="user in users"  ng-drag-success="onDragComplete($data,$event)" ng-drag="true" ng-drag-data="user" allow-transform="false">
                         <div class="media-left">
-                            <img class="img-circle img-xs" alt="Profile Picture" src="/assets/images/profile/scrumMaster_128x128.png">
+                            <img class="img-circle img-xs" alt="Profile Picture" ng-src="{{user.avatar}}">
                         </div>
                         <div class="media-body">
-                            <div class="text-lg">Scrum Master</div>
-                            <span class="text-muted">Development</span>
-                        </div>
-                    </a>
-                    <a class="list-group-item" href="#">
-                        <div class="media-left">
-                            <img class="img-circle img-xs" alt="Profile Picture" src="/assets/images/user.png">
-                        </div>
-                        <div class="media-body">
-                            <div class="text-lg">Jordi Zacarias</div>
-                            <span class="text-muted">Development</span>
-                        </div>
-                    </a>
-                    <a class="list-group-item" href="#">
-                        <div class="media-left">
-                            <img class="img-circle img-xs" alt="Profile Picture" src="/assets/images/profile/dev_128x128.png">
-                        </div>
-                        <div class="media-body">
-                            <div class="text-lg">Developer 1</div>
-                            <span class="text-muted">Development</span>
-                        </div>
-                    </a>
-                    <a class="list-group-item" href="#">
-                        <div class="media-left">
-                            <img class="img-circle img-xs" alt="Profile Picture" src="/assets/images/profile/qa_128x128.png">
-                        </div>
-                        <div class="media-body">
-                            <div class="text-lg">QA Engineer</div>
-                            <span class="text-muted">Development</span>
-                        </div>
-                    </a>
-                    <a class="list-group-item" href="#">
-                        <div class="media-left">
-                            <img class="img-circle img-xs" alt="Profile Picture" src="/assets/images/profile/productOwner_128x128.png">
-                        </div>
-                        <div class="media-body">
-                            <div class="text-lg">Product Owner</div>
-                            <span class="text-muted">Product</span>
+                            <div class="text-lg">{{user.name}}</div>
+                            <span class="text-muted">{{user.profile}}</span>
                         </div>
                     </a>
                 </div>

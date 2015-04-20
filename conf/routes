@@ -23,8 +23,10 @@ POST    /api/column/insert-task                  controllers.BoardColumnControll
 GET     /api/task/tasks-by-board/:boardId       controllers.TaskController.listByBoard(boardId: Int)
 GET     /api/task/columns-by-column/:columnId    controllers.TaskController.listByColumn(columnId : Int)
 POST    /api/task                               controllers.TaskController.save
-DELETE   /api/task/:id                           controllers.TaskController.delete(id: Int)
+DELETE  /api/task/:id                           controllers.TaskController.delete(id: Int)
 
+# Task Users
+POST    /api/taskUser                           controllers.TaskUserController.save
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

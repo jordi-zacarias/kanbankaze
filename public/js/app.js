@@ -6,6 +6,7 @@ var app = angular.module('inscrumApp', [
     'angular-hal',
     'http-auth-interceptor',
     'ng-sortable',
+    'ngDraggable',
     'mgcrea.ngStrap',
     
     'inscrum.settings',
@@ -21,6 +22,7 @@ var app = angular.module('inscrumApp', [
     'controllers.board',
     'controllers.login',
     'controllers.task',
+    'controllers.user'
 ]);
 
 app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'localStorageServiceProvider', function($routeProvider, $locationProvider, $httpProvider, localStorageServiceProvider) {

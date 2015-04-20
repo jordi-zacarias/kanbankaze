@@ -10,6 +10,8 @@ taskServices.factory('taskService', ['$http', 'halClient', 'appSettings', functi
     var addToColumnUrl = appSettings.apiBaseUri + "/column/insert-task";
     var saveUrl = appSettings.apiBaseUri + "/task";
 
+    var addUserUrl = appSettings.apiBaseUri + "/taskUser";
+
     return {
         findByBoard: function (boardId){
             return halClient.$get(taskByBoardUrl + boardId);
@@ -38,6 +40,15 @@ taskServices.factory('taskService', ['$http', 'halClient', 'appSettings', functi
 
         delete: function(task){
             return halClient.$del(saveUrl + "/" + task.id);
+        },
+
+        addUser: function(task, userGuid){
+            var data = {
+                taskId: task.id,
+                userGuid, userGuid
+            };
+
+            return halClient.$post(addUserUrl, {}, data);
         }
     }
 }]);

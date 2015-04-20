@@ -235,6 +235,12 @@ mainnav-container{
 
 #burndown-chart svg { width: 100% !important; }
 
+
+.dragging{
+    z-index:9999;
+    width: 200px;
+}
+
 @media (max-width: 767px) {
     
     body{

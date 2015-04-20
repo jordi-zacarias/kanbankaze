@@ -58,6 +58,15 @@ boardControllers.controller("boardViewCtrl",['$scope', '$rootScope', 'boardServi
         $scope.board.columns[taskInfo.columnIndex].tasks.splice(taskInfo.taskIndex,1);
     });
 
+    $scope.onDropComplete = function(data, event,task){
+        if (!task.users) task.users = [];
+        if (task.users.indexOf(data) == -1){
+            task.users.push(data);
+            taskService.addUser()
+        }
+
+    }
+
     $scope.$watch("board.columns", function (newColumns, oldColumns){
         var tasksChanges = [];
 

@@ -1,7 +1,9 @@
 package com.inscrum.repository.task
 
+import java.util.UUID
+
 import com.inscrum.model._
-import com.inscrum.model.task.{TaskTable, Task}
+import com.inscrum.model.task._
 import scala.slick.lifted.TableQuery
 import scala.slick.driver.MySQLDriver.simple._
 
@@ -14,6 +16,7 @@ object TaskRepository {
   private val tasks = TableQuery[TaskTable]
   private val boardColumns = TableQuery[BoardColumnTable]
   private val relBoardColumnTask = TableQuery[RelBoardColumnTaskTable]
+  private val relTaskUsers = TableQuery[RelTaskUserTable]
 
   def save(taskToSave: Task)(implicit s: Session) : Task = {
 
@@ -43,5 +46,10 @@ object TaskRepository {
         rct <- relBoardColumnTask if (rct.taskId === t.id && rct.boardColumnId === columnId)
       } yield (t, rct)
       ).sortBy( r => (r._2.position.asc)).list
+  }
+
+  def addUser(taskId: Int, userGuid: UUID)(implicit s: Session): Unit ={
+    val taskUser = RelTaskUser(taskId, userGuid)
+    relTaskUsers += taskUser
   }
 }
