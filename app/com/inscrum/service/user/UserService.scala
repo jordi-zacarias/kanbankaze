@@ -87,4 +87,10 @@ object UserService {
     }
   }
 
+  def getAll(): List[User] = {
+    DB{ implicit  session =>
+      UserRepository.getAll()
+    }
+  }
+
 }

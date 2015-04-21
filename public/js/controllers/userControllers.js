@@ -8,31 +8,31 @@ userControllers.controller("teamListCtrl",
 
     $scope.users = [
         {
-            id: 1,
+            id: '1',
             name: 'Scrum Master',
             avatar: '/assets/images/profile/scrumMaster_128x128.png',
             profile: 'Development',
         },
         {
-            id: 2,
+            id: 'a3f49658-c6a8-416a-b8fb-0661b57fa383',
             name: 'Jordi Zacarias',
             avatar: '/assets/images/user.png',
             profile: 'Development',
         },
         {
-            id: 3,
+            id: '3',
             name: 'Developer 1',
             avatar: '/assets/images/profile/dev_128x128.png',
             profile: 'Development',
         },
         {
-            id: 4,
+            id: '4',
             name: 'QA Engineer',
             avatar: '/assets/images/profile/qa_128x128.png',
             profile: 'Development',
         },
         {
-            id: 5,
+            id: '5',
             name: 'Product Owner',
             avatar: '/assets/images/profile/productOwner_128x128.png',
             profile: 'Product',

@@ -1,5 +1,7 @@
 package controllers
 
+import java.util.UUID
+
 import com.inscrum.model.task.RelTaskUser
 import com.inscrum.service.task.TaskService
 import play.api.mvc.{BodyParsers, Action, Controller}

@@ -28,6 +28,9 @@ DELETE  /api/task/:id                           controllers.TaskController.delet
 # Task Users
 POST    /api/taskUser                           controllers.TaskUserController.save
 
+# Users
+GET     /api/user                               controllers.UserController.list
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
