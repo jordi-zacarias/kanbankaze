@@ -58,11 +58,11 @@ boardControllers.controller("boardViewCtrl",['$scope', '$rootScope', 'boardServi
         $scope.board.columns[taskInfo.columnIndex].tasks.splice(taskInfo.taskIndex,1);
     });
 
-    $scope.onDropComplete = function(data, event,task){
+    $scope.onDropComplete = function(user, event, task){
         if (!task.users) task.users = [];
-        if (task.users.indexOf(data) == -1){
-            task.users.push(data);
-            taskService.addUser()
+        if (task.users.indexOf(user) == -1){
+            task.users.push(user);
+            taskService.addUser(task, user.id)
         }
 
     }

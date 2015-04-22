@@ -56,4 +56,6 @@ object UserRepository {
       }
 
   }
+
+  def getAll()(implicit s: Session) : List[User] = users.list
 }
