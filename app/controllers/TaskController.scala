@@ -16,7 +16,7 @@ object TaskController extends Controller {
 
   import scalaoauth2.provider.OAuth2ProviderActionBuilders._
 
-  def listByBoard(boardId: Int) = Action { implicit req =>
+  def listByBoard(boardId: Int) = AuthorizedAction(new Oauth2DataHandler()) { implicit req =>
     val tasks = TaskService.getTaskByBoard(boardId)
 
     //implicit val taskFormat = Json.format[(Task, RelBoardColumnTask)]
@@ -71,7 +71,7 @@ object TaskController extends Controller {
     Ok(resource)
   }
 
-  def save = Action(BodyParsers.parse.json) { implicit req =>
+  def save = AuthorizedAction(new Oauth2DataHandler())(BodyParsers.parse.json) { implicit req =>
 
     implicit val taskReader : Reads[Task] = Json.reads[Task]
     implicit val taskWriter : Writes[Task] = Json.writes[Task]
@@ -83,7 +83,7 @@ object TaskController extends Controller {
     Ok(Json.toJson[Task](savedTask))
   }
 
-  def delete (taskId: Int) = Action { implicit req =>
+  def delete (taskId: Int) = AuthorizedAction(new Oauth2DataHandler()) { implicit req =>
 
     TaskService.delete(taskId)
 

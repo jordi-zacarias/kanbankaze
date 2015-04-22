@@ -1,6 +1,7 @@
 package controllers
 
 import com.inscrum.service.board.BoardService
+import com.inscrum.service.user.Oauth2DataHandler
 import play.api.mvc.Action
 import play.api.mvc.Controller
 import play.api.hal._
@@ -12,7 +13,9 @@ import play.api.libs.json._
 
 object BoardController extends Controller {
 
-  def list = Action{ implicit req =>
+  import scalaoauth2.provider.OAuth2ProviderActionBuilders._
+
+  def list = AuthorizedAction(new Oauth2DataHandler()){ implicit req =>
     
     val boards = BoardService.getAll()
 
@@ -26,7 +29,7 @@ object BoardController extends Controller {
     Ok(resource)
   }
   
-  def get(id: Int) = Action { implicit req =>
+  def get(id: Int) = AuthorizedAction(new Oauth2DataHandler()) { implicit req =>
     
     val board = BoardService.getBoard(id)
     

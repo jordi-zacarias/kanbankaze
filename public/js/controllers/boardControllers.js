@@ -62,7 +62,7 @@ boardControllers.controller("boardViewCtrl",['$scope', '$rootScope', 'boardServi
         if (!task.users) task.users = [];
         if (task.users.indexOf(user) == -1){
             task.users.push(user);
-            taskService.addUser(task, user.id)
+            taskService.addUser(task, user.id);
         }
 
     }

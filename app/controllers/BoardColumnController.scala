@@ -2,6 +2,7 @@ package controllers
 
 import com.inscrum.model.{RelBoardColumnTask, BoardColumn}
 import com.inscrum.service.board.{RelBoardColumnTaskService, BoardColumnService}
+import com.inscrum.service.user.Oauth2DataHandler
 import play.api.mvc.{BodyParsers, Action, Controller}
 import play.api.hal._
 import play.api.mvc.hal._
@@ -13,13 +14,15 @@ import play.api.libs.functional.syntax._
  */
 object BoardColumnController extends Controller{
 
+  import scalaoauth2.provider.OAuth2ProviderActionBuilders._
+
   implicit val relBoardColumnTaskReads: Reads[RelBoardColumnTask] = (
     (JsPath \ "boardColumnId").read[Int] and
       (JsPath \ "taskId").read[Int] and
       (JsPath \ "position").read[Int]
   )(RelBoardColumnTask.apply _)
 
-  def listByBoard(boardId: Int) = Action { implicit req =>
+  def listByBoard(boardId: Int) = AuthorizedAction(new Oauth2DataHandler()) { implicit req =>
 
     val columns = BoardColumnService.getColumnsByBoard(boardId)
     //implicit val boardFormat = Json.format[BoardColumn]
@@ -48,7 +51,7 @@ object BoardColumnController extends Controller{
     Ok(resource)
   }
 
-  def get(id: Int) = Action { implicit req =>
+  def get(id: Int) = AuthorizedAction(new Oauth2DataHandler()) { implicit req =>
     val column = BoardColumnService.getColumn(id)
 
     implicit val boardWrites: Writes[BoardColumn] = Json.writes[BoardColumn]
@@ -60,7 +63,7 @@ object BoardColumnController extends Controller{
     Ok(resource)
   }
 
-  def insertTasks = Action(BodyParsers.parse.json) { implicit req =>
+  def insertTasks = AuthorizedAction(new Oauth2DataHandler())(BodyParsers.parse.json) { implicit req =>
 
     val columnTask = req.body.validate[RelBoardColumnTask]
     RelBoardColumnTaskService.save(columnTask.get)
@@ -68,7 +71,7 @@ object BoardColumnController extends Controller{
     Ok("inserted")
   }
 
-  def updateTasks = Action(BodyParsers.parse.json) { implicit req =>
+  def updateTasks = AuthorizedAction(new Oauth2DataHandler())(BodyParsers.parse.json) { implicit req =>
 
     val columnTasks = req.body.validate[List[RelBoardColumnTask]]
 

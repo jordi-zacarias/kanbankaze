@@ -1,6 +1,6 @@
 package controllers
 
-import com.inscrum.service.user.UserService
+import com.inscrum.service.user.{Oauth2DataHandler, UserService}
 import com.inscrum.model.user._
 import play.api.mvc.Action
 import play.api.mvc.Controller
@@ -13,11 +13,12 @@ import play.api.libs.json._
  */
 object UserController extends Controller {
 
-  def list() = Action { implicit req =>
+  import scalaoauth2.provider.OAuth2ProviderActionBuilders._
+
+  def list() = AuthorizedAction(new Oauth2DataHandler()) { implicit req =>
 
     val users = UserService.getAll()
 
-    //implicit val userFormat = Json.format[User]
     implicit val userWrites = new Writes[User] {
       def writes(u: User): JsValue = {
         Json.obj(
