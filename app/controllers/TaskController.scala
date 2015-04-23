@@ -47,6 +47,8 @@ object TaskController extends Controller {
 
   def listByColumn(columnId: Int) = AuthorizedAction(new Oauth2DataHandler()) { implicit req =>
     val tasks = TaskService.getTaskByColumn(columnId)
+    val tasks2 = TaskService.getTaskByColumn2(columnId)
+
 
     implicit val writer = new Writes[(Task, RelBoardColumnTask)] {
       def writes(c: (Task, RelBoardColumnTask)): JsValue = {

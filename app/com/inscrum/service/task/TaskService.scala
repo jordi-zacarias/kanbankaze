@@ -4,6 +4,7 @@ import java.util.UUID
 
 import com.inscrum.model.RelBoardColumnTask
 import com.inscrum.model.task._
+import com.inscrum.model.user.User
 import com.inscrum.repository.board.RelBoardColumnTaskRepository
 import com.inscrum.repository.task.TaskRepository
 import com.inscrum.repository.DB
@@ -43,6 +44,12 @@ object TaskService {
   def getTaskByColumn(columnId: Int) : List[(Task, RelBoardColumnTask)] = {
     DB { implicit session =>
       TaskRepository.getTaskByColumn(columnId)
+    }
+  }
+
+  def getTaskByColumn2(columnId: Int) : List[((Task, RelBoardColumnTask), Seq[User])] = {
+    DB { implicit session =>
+      TaskRepository.getTaskByColumn2(columnId)
     }
   }
 

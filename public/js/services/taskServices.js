@@ -47,8 +47,6 @@ taskServices.factory('taskService', ['$http', 'halClient', 'appSettings', functi
                 taskId: task.id,
                 userGuid: userGuid
             };
-            alert(data.taskId);
-            alert(data.userGuid);
             return halClient.$post(addUserUrl, {}, data);
         }
     }
