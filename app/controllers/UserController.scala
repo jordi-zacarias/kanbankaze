@@ -15,7 +15,8 @@ object UserController extends Controller {
 
   import scalaoauth2.provider.OAuth2ProviderActionBuilders._
 
-  def list() = AuthorizedAction(new Oauth2DataHandler()) { implicit req =>
+  //def list() = AuthorizedAction(new Oauth2DataHandler()) { implicit req =>
+  def list() = Action { implicit req =>
 
     val users = UserService.getAll()
 
@@ -25,7 +26,8 @@ object UserController extends Controller {
           "id" -> u.guid,
           "firstName" -> u.firstName,
           "lastName" -> u.lastName,
-          "email" -> u.email
+          "email" -> u.email,
+          "avatar" -> u.avatar
         )
       }
     }

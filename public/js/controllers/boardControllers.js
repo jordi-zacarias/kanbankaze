@@ -14,12 +14,14 @@ boardControllers.controller("boardViewCtrl",['$scope', '$rootScope', 'boardServi
         board.$get("columns").then(function (columns){
             $scope.board.columns = columns.items;
             columns.items.forEach(function (column){
+
                 taskService.findByColumn(column.id).then(function (tasks){
                     $scope.refreshBoard = false;
                     column.tasks = tasks.items;
                     var popover = $('.add-popover');
                     if (popover.length)popover.popover();
                 });
+
             });
         });
     });
@@ -53,8 +55,7 @@ boardControllers.controller("boardViewCtrl",['$scope', '$rootScope', 'boardServi
     });
 
     $scope.$on("board:remove-task", function(event, taskInfo){
-        console.log("column Id: " + taskInfo.columnIndex);
-        console.log("task Id: " + taskInfo.taskIndex);
+
         $scope.board.columns[taskInfo.columnIndex].tasks.splice(taskInfo.taskIndex,1);
     });
 

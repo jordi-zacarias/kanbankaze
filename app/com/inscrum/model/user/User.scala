@@ -11,6 +11,7 @@ case class User(guid: UUID,
                 lastName: String,
                 email: String,
                 password: String,
+                avatar: String,
                 salt: Option[String],
                 createdAt: DateTime,
                 createdByGuid: UUID,
@@ -25,6 +26,7 @@ class Users(tag: Tag) extends Table[User](tag, "user") {
   def lastName = column[String]("last_name")
   def email = column[String]("email")
   def password = column[String]("password")
+  def avatar = column[String]("avatar")
   def salt = column[Option[String]]("salt")
   def createdAt = column[DateTime]("created_at")
   def createdByGuid = column[UUID]("created_by_guid")
@@ -32,5 +34,27 @@ class Users(tag: Tag) extends Table[User](tag, "user") {
   def updatedByGuid = column[UUID]("updated_by_guid")
   def deletedAt = column[Option[DateTime]]("deleted_at")
   def deletedByGuid = column[Option[UUID]]("deleted_by_guid")
-  def * = (guid, firstName, lastName, email, password, salt, createdAt, createdByGuid, updatedAt, updatedByGuid, deletedAt, deletedByGuid) <> (User.tupled, User.unapply)
+  def * = (guid, firstName, lastName, email, password, avatar, salt, createdAt, createdByGuid, updatedAt, updatedByGuid, deletedAt, deletedByGuid) <> (User.tupled, User.unapply)
+  def ? = (guid.?, firstName, lastName, email, password, avatar, salt, createdAt, createdByGuid, updatedAt, updatedByGuid, deletedAt, deletedByGuid) <> (applyMaybe, unapplyMaybe)
+
+  def applyMaybe[U](t: U) = t match {
+    case (
+      Some(guid: UUID),
+      firstName: String,
+      lastName: String,
+      email: String,
+      password: String,
+      avatar: String,
+      Some(salt: String),
+      createdAt: DateTime,
+      createdByGuid: UUID,
+      updatedAt: DateTime,
+      updatedByGuid: UUID,
+      None,
+      None) => Option(User(guid, firstName, lastName, email, password, avatar, Some(salt), createdAt, createdByGuid, updatedAt, updatedByGuid, None, None))
+
+    case _ => None
+  }
+
+  def unapplyMaybe = (u: Option[User]) => None
 }

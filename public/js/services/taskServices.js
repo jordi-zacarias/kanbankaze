@@ -5,7 +5,7 @@ var taskServices = angular.module('services.tasks', []);
 taskServices.factory('taskService', ['$http', 'halClient', 'appSettings', function($http, halClient, appSettings){
 
     var taskByBoardUrl = appSettings.apiBaseUri + "/task/tasks-by-board/";
-    var taskByColumnUrl = appSettings.apiBaseUri + "/task/columns-by-column/";
+    var taskByColumnUrl = appSettings.apiBaseUri + "/task/query-by-column/";
     var moveUrl = appSettings.apiBaseUri + "/column/update-list-columns";
     var addToColumnUrl = appSettings.apiBaseUri + "/column/insert-task";
     var saveUrl = appSettings.apiBaseUri + "/task";

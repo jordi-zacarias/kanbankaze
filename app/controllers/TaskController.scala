@@ -2,6 +2,7 @@ package controllers
 
 import com.inscrum.model.RelBoardColumnTask
 import com.inscrum.model.task.Task
+import com.inscrum.model.user.User
 import com.inscrum.service.task.TaskService
 import com.inscrum.service.user.Oauth2DataHandler
 import play.api.mvc.{BodyParsers, Action, Controller}
@@ -47,23 +48,37 @@ object TaskController extends Controller {
 
   def listByColumn(columnId: Int) = AuthorizedAction(new Oauth2DataHandler()) { implicit req =>
     val tasks = TaskService.getTaskByColumn(columnId)
-    val tasks2 = TaskService.getTaskByColumn2(columnId)
 
+//    implicit val writer = new Writes[(Task, RelBoardColumnTask)] {
+//      def writes(c: (Task, RelBoardColumnTask)): JsValue = {
+//        Json.obj(
+//          "id" -> c._1.id,
+//          "title" -> c._1.title,
+//          "description" -> c._1.description,
+//          "estimation" -> c._1.estimation,
+//          "acceptanceCriteria" -> c._1.acceptanceCriteria,
+//          "blocked" -> c._1.blocked,
+//          "blockedReason" -> c._1.blockedReason.fold("")(identity),
+//          "position" -> c._2.position
+//        )
+//      }
+//    }
 
-    implicit val writer = new Writes[(Task, RelBoardColumnTask)] {
-      def writes(c: (Task, RelBoardColumnTask)): JsValue = {
+    implicit val taskWrites = Json.writes[Task]
+
+    implicit val userWrites = new Writes[User] {
+      def writes(u: User): JsValue = {
         Json.obj(
-          "id" -> c._1.id,
-          "title" -> c._1.title,
-          "description" -> c._1.description,
-          "estimation" -> c._1.estimation,
-          "acceptanceCriteria" -> c._1.acceptanceCriteria,
-          "blocked" -> c._1.blocked,
-          "blockedReason" -> c._1.blockedReason.fold("")(identity),
-          "position" -> c._2.position
+          "id" -> u.guid,
+          "firstName" -> u.firstName,
+          "lastName" -> u.lastName,
+          "email" -> u.email,
+          "avatar" -> u.avatar
         )
       }
     }
+
+    implicit def tasUserTuple[Task : Writes, User : Writes] = Writes[(Task, User)] ( o =>  Json.arr(o._1, o._2) )
 
     val jsonTasks = Json.obj("items" -> tasks)
 

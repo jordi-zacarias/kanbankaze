@@ -6,6 +6,7 @@
 GET     /                           controllers.Application.index
 
 GET     /test   controllers.TestController.createUser
+GET     /test-query   controllers.TestController.testQuery
 
 POST     /api/oauth/token            controllers.OAuth2Controller.accessToken
 
@@ -21,7 +22,7 @@ POST    /api/column/insert-task                  controllers.BoardColumnControll
 
 # Tasks
 GET     /api/task/tasks-by-board/:boardId       controllers.TaskController.listByBoard(boardId: Int)
-GET     /api/task/columns-by-column/:columnId    controllers.TaskController.listByColumn(columnId : Int)
+GET     /api/task/query-by-column/:columnId    controllers.TaskController.listByColumn(columnId : Int)
 POST    /api/task                               controllers.TaskController.save
 DELETE  /api/task/:id                           controllers.TaskController.delete(id: Int)
 

@@ -5,6 +5,7 @@ import java.util.UUID
 import com.inscrum.model._
 import com.inscrum.model.task._
 import com.inscrum.model.user._
+import org.joda.time.DateTime
 import scala.collection.immutable.ListMap
 import scala.slick.ast.JoinType
 import scala.slick.lifted.TableQuery
@@ -43,48 +44,25 @@ object TaskRepository {
     ).sortBy( r => (r._2.boardColumnId, r._2.position)).list
   }
 
-  def getTaskByColumn(columnId: Int)(implicit s: Session) : List[(Task, RelBoardColumnTask)] = {
-    (
-      for{
-        t <- tasks
-        rct <- relBoardColumnTasks if (rct.taskId === t.id && rct.boardColumnId === columnId)
-      } yield (t, rct)
-      ).sortBy( r => (r._2.position.asc)).list
+  def getTaskByColumn(columnId: Int)(implicit s: Session) : List[(Task, User)] = { //List[((Task, RelBoardColumnTask), Seq[User])] = {
+
+        (
+          for{
+            task <- tasks leftJoin relTaskUsers on (_.id === _.taskId)
+            user <- users if (user.guid === task._2.userGuid)
+            boardColumnTask <- relBoardColumnTasks if (boardColumnTask.taskId === task._1.id && boardColumnTask.boardColumnId === columnId)
+          } yield (task._1, user, boardColumnTask)
+        ).sortBy( r => r._3.position.asc).map( r => (r._1,r._2)).list
   }
 
-  def getTaskByColumn2(columnId: Int)(implicit s: Session) : List[((Task, RelBoardColumnTask), Seq[User])] = {
+  def getTaskByColumn2(columnId: Int)(implicit s: Session) : List[(Task, Option[User])] = { //List[((Task, RelBoardColumnTask), Seq[User])] = {
 
-    val query = for{
-          task <- tasks
-          boardTask <- relBoardColumnTasks if (boardTask.taskId === task.id && boardTask.boardColumnId === columnId)
-          taskUser <-  relTaskUsers if (taskUser.taskId === task.id)
-          user <- relTaskUsers leftJoin users on ( _.userGuid === _.guid)
-    } yield (task, boardTask, user._2)
-
-    query.foldLeft(ListMap.empty[(Task, RelBoardColumnTask), Seq[User]]) {
-      case (theMap, (task, boardTask, newUser)) => {
-
-        val listUsers = theMap.get(task, boardTask) match {
-          case None => Seq(newUser)
-          case Some(existingUsers) => existingUsers :+ newUser
-        }
-
-        theMap + (((task, boardTask), listUsers))
-      }
-    }.toList
-
-      //).sortBy( r => (r._2.position.asc)).list
-
-    /*val query = for {
-      (brand, license) ? Brands leftJoin Licenses on (_.id === _.brandId) if brand.code === code
-      coordinator ? brand.coordinator
-    } yield (brand, coordinator, license.id.?)
-
-    query.list.groupBy { case (brand, coordinator, _) ? brand -> coordinator }
-      .mapValues(_.flatMap(_._3)).map {
-      case ((brand, coordinator), licenses) ?
-        BrandView(brand, coordinator, licenses)
-    }.toList.headOption*/
+    (
+      for{
+        (task,( relUsers, user)) <- tasks leftJoin (relTaskUsers join users on (_.userGuid === _.guid)) on (_.id === _._1.taskId)
+        (boardColumnTask) <- relBoardColumnTasks if (boardColumnTask.taskId === task.id && boardColumnTask.boardColumnId === columnId)
+      } yield (task, user.?, boardColumnTask)
+    ).sortBy( r => r._3.position.asc).map( r => (r._1,r._2)).list
   }
 
   def addUser(taskId: Int, userGuid: UUID)(implicit s: Session): Unit ={

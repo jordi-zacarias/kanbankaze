@@ -8,6 +8,7 @@ import com.inscrum.model.user.User
 import com.inscrum.repository.board.RelBoardColumnTaskRepository
 import com.inscrum.repository.task.TaskRepository
 import com.inscrum.repository.DB
+import scala.collection.immutable.ListMap
 
 
 /**
@@ -41,15 +42,46 @@ object TaskService {
     }
   }
 
-  def getTaskByColumn(columnId: Int) : List[(Task, RelBoardColumnTask)] = {
+//  def getTaskByColumn(columnId: Int) : List[(Task, RelBoardColumnTask)] = {
+//    DB { implicit session =>
+//      TaskRepository.getTaskByColumn(columnId)
+//    }
+//  }
+
+  def getTaskByColumn(columnId: Int) : List[(Task, Seq[User])] = {
     DB { implicit session =>
-      TaskRepository.getTaskByColumn(columnId)
+      val taskByColumn = TaskRepository.getTaskByColumn(columnId)
+
+      taskByColumn.foldLeft(ListMap.empty[Task, Seq[User]]) {
+        case (theMap, (task, newUser)) => {
+
+          val listUsers = theMap.get(task) match {
+            case None => Seq(newUser)
+            case Some(existingUsers) => existingUsers :+ newUser
+          }
+
+          theMap + ((task, listUsers))
+        }
+      }.toList
     }
   }
 
-  def getTaskByColumn2(columnId: Int) : List[((Task, RelBoardColumnTask), Seq[User])] = {
+  def getTaskByColumn2(columnId: Int) : List[(Task, Seq[Option[User]])] = {
     DB { implicit session =>
-      TaskRepository.getTaskByColumn2(columnId)
+      //TaskRepository.getTaskByColumn2(columnId)
+      val taskByColumn = TaskRepository.getTaskByColumn2(columnId)
+
+      taskByColumn.foldLeft(ListMap.empty[Task, Seq[Option[User]]]) {
+        case (theMap, (task, newUser)) => {
+
+          val listUsers = theMap.get(task) match {
+            case None => Seq(newUser)
+            case Some(existingUsers) => existingUsers :+ newUser
+          }
+
+          theMap + ((task, listUsers))
+        }
+      }.toList
     }
   }
 
