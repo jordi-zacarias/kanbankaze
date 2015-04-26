@@ -23,5 +23,4 @@ libraryDependencies ++= Seq(
 //  "ws.securesocial" %% "securesocial" % "master-SNAPSHOT"
 )
 
-
 fork in run := false

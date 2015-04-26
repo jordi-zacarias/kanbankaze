@@ -1,7 +1,10 @@
 package com.inscrum.model.task
 
-import scala.slick.driver.MySQLDriver.simple._
+import java.util.UUID
 
+import scala.slick.driver.MySQLDriver.simple._
+import com.inscrum.model.user.UserSimple
+import scala.collection.mutable.Set
 /**
  * Created by jordi on 28/03/2015.
  */
@@ -12,7 +15,10 @@ case class Task(id: Int,
                 estimation: Int,
                 acceptanceCriteria: String,
                 blocked: Boolean,
-                blockedReason: Option[String])
+                blockedReason: Option[String]){
+
+                var users: Option[Set[UserSimple]] = None
+}
 
 class TaskTable (tag: Tag) extends Table[Task](tag, "TASK") {
 

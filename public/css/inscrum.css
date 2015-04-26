@@ -1,5 +1,5 @@
 body{
-    font-size: 12px;
+    font-size: 14px;
 }
 
 mainnav-container{
@@ -161,7 +161,7 @@ mainnav-container{
 
 .task-container > li{
     border: 1px solid #e7ebee;
-    padding: 8px 6px 14px;
+    padding: 8px 6px;
     margin-bottom: 4px;
     cursor: move;
 }
@@ -211,6 +211,10 @@ mainnav-container{
 
 .task-blocked-icon{
     color: red;
+}
+
+.task-users{
+    margin-top: 8px;
 }
 
 #burndown-chart-container{

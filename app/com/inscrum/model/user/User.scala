@@ -20,6 +20,12 @@ case class User(guid: UUID,
                 deletedAt: Option[DateTime],
                 deletedByGuid: Option[UUID])
 
+case class UserSimple(guid: UUID,
+                firstName: String,
+                lastName: String,
+                email: String,
+                avatar: String)
+
 class Users(tag: Tag) extends Table[User](tag, "user") {
   def guid = column[UUID]("guid", O.PrimaryKey)
   def firstName = column[String]("first_name")

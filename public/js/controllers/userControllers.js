@@ -4,42 +4,19 @@ var userControllers = angular.module("controllers.user", []);
 
 
 userControllers.controller("teamListCtrl",
-    ['$scope', function($scope) {
+    ['$scope', 'userService', function($scope, userService) {
 
-    $scope.users = [
-        {
-            id: '1',
-            name: 'Scrum Master',
-            avatar: '/assets/images/profile/scrumMaster_128x128.png',
-            profile: 'Development',
-        },
-        {
-            id: 'a3f49658-c6a8-416a-b8fb-0661b57fa383',
-            name: 'Jordi Zacarias',
-            avatar: '/assets/images/user.png',
-            profile: 'Development',
-        },
-        {
-            id: '3',
-            name: 'Developer 1',
-            avatar: '/assets/images/profile/dev_128x128.png',
-            profile: 'Development',
-        },
-        {
-            id: '4',
-            name: 'QA Engineer',
-            avatar: '/assets/images/profile/qa_128x128.png',
-            profile: 'Development',
-        },
-        {
-            id: '5',
-            name: 'Product Owner',
-            avatar: '/assets/images/profile/productOwner_128x128.png',
-            profile: 'Product',
-        },
-    ];
+    $scope.users = [];
 
-    $scope.onDragComplete= function(data, evt){
+    $scope.close = function(){
+        var asideClass = "aside-in";
+        var container = $("#container");
 
+        container.removeClass( asideClass );
     }
+
+    userService.list().then( function (userlist){
+        $scope.users = userlist.items;
+    });
+
 }]);

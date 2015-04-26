@@ -2,7 +2,7 @@ package controllers
 
 import com.inscrum.model.RelBoardColumnTask
 import com.inscrum.model.task.Task
-import com.inscrum.model.user.User
+import com.inscrum.model.user._
 import com.inscrum.service.task.TaskService
 import com.inscrum.service.user.Oauth2DataHandler
 import play.api.mvc.{BodyParsers, Action, Controller}
@@ -64,21 +64,25 @@ object TaskController extends Controller {
 //      }
 //    }
 
-    implicit val taskWrites = Json.writes[Task]
+    //implicit val taskWrites = Json.writes[Task]
+    implicit val userSimpleWrites = Json.writes[UserSimple]
 
-    implicit val userWrites = new Writes[User] {
-      def writes(u: User): JsValue = {
+    implicit val userWrites = new Writes[Task] {
+      def writes(t: Task): JsValue = {
         Json.obj(
-          "id" -> u.guid,
-          "firstName" -> u.firstName,
-          "lastName" -> u.lastName,
-          "email" -> u.email,
-          "avatar" -> u.avatar
+          "id" -> t.id,
+          "title" -> t.title,
+          "description" -> t.description,
+          "estimation" -> t.estimation,
+          "acceptanceCriteria" -> t.acceptanceCriteria,
+          "blocked" -> t.blocked,
+          "blockedReason" -> t.blockedReason.fold("")(identity),
+          "users" -> t.users
         )
       }
     }
 
-    implicit def tasUserTuple[Task : Writes, User : Writes] = Writes[(Task, User)] ( o =>  Json.arr(o._1, o._2) )
+    //implicit def tasUserTuple[Task : Writes, User : Writes] = Writes[(Task, User)] ( o =>  Json.arr(o._1, o._2) )
 
     val jsonTasks = Json.obj("items" -> tasks)
 

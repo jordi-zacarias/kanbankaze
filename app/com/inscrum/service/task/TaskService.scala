@@ -42,46 +42,27 @@ object TaskService {
     }
   }
 
-//  def getTaskByColumn(columnId: Int) : List[(Task, RelBoardColumnTask)] = {
+//  def getTaskByColumn(columnId: Int) : List[(Task, Seq[User])] = {
 //    DB { implicit session =>
-//      TaskRepository.getTaskByColumn(columnId)
+//      val taskByColumn = TaskRepository.getTaskByColumn(columnId)
+//
+//      taskByColumn.foldLeft(ListMap.empty[Task, Seq[User]]) {
+//        case (theMap, (task, newUser)) => {
+//
+//          val listUsers = theMap.get(task) match {
+//            case None => Seq(newUser)
+//            case Some(existingUsers) => existingUsers :+ newUser
+//          }
+//
+//          theMap + ((task, listUsers))
+//        }
+//      }.toList
 //    }
 //  }
 
-  def getTaskByColumn(columnId: Int) : List[(Task, Seq[User])] = {
+  def getTaskByColumn(columnId: Int) : List[Task] = {
     DB { implicit session =>
-      val taskByColumn = TaskRepository.getTaskByColumn(columnId)
-
-      taskByColumn.foldLeft(ListMap.empty[Task, Seq[User]]) {
-        case (theMap, (task, newUser)) => {
-
-          val listUsers = theMap.get(task) match {
-            case None => Seq(newUser)
-            case Some(existingUsers) => existingUsers :+ newUser
-          }
-
-          theMap + ((task, listUsers))
-        }
-      }.toList
-    }
-  }
-
-  def getTaskByColumn2(columnId: Int) : List[(Task, Seq[Option[User]])] = {
-    DB { implicit session =>
-      //TaskRepository.getTaskByColumn2(columnId)
-      val taskByColumn = TaskRepository.getTaskByColumn2(columnId)
-
-      taskByColumn.foldLeft(ListMap.empty[Task, Seq[Option[User]]]) {
-        case (theMap, (task, newUser)) => {
-
-          val listUsers = theMap.get(task) match {
-            case None => Seq(newUser)
-            case Some(existingUsers) => existingUsers :+ newUser
-          }
-
-          theMap + ((task, listUsers))
-        }
-      }.toList
+      TaskRepository.getTaskByColumn(columnId)
     }
   }
 

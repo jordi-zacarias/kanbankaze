@@ -7,6 +7,7 @@ import com.inscrum.model.task._
 import com.inscrum.model.user._
 import org.joda.time.DateTime
 import scala.collection.immutable.ListMap
+import scala.collection.mutable.Set
 import scala.slick.ast.JoinType
 import scala.slick.lifted.TableQuery
 import scala.slick.driver.MySQLDriver.simple._
@@ -44,25 +45,45 @@ object TaskRepository {
     ).sortBy( r => (r._2.boardColumnId, r._2.position)).list
   }
 
-  def getTaskByColumn(columnId: Int)(implicit s: Session) : List[(Task, User)] = { //List[((Task, RelBoardColumnTask), Seq[User])] = {
+//  def getTaskByColumn(columnId: Int)(implicit s: Session) : List[(Task, User)] = { //List[((Task, RelBoardColumnTask), Seq[User])] = {
+//
+//    (
+//      for{
+//        task <- tasks leftJoin relTaskUsers on (_.id === _.taskId)
+//        user <- users if (user.guid === task._2.userGuid)
+//        boardColumnTask <- relBoardColumnTasks if (boardColumnTask.taskId === task._1.id && boardColumnTask.boardColumnId === columnId)
+//      } yield (task._1, user, boardColumnTask)
+//    ).sortBy( r => r._3.position.asc)
+//    .map( r => (r._1,r._2))
+//    .list
+//  }
 
-        (
-          for{
-            task <- tasks leftJoin relTaskUsers on (_.id === _.taskId)
-            user <- users if (user.guid === task._2.userGuid)
-            boardColumnTask <- relBoardColumnTasks if (boardColumnTask.taskId === task._1.id && boardColumnTask.boardColumnId === columnId)
-          } yield (task._1, user, boardColumnTask)
-        ).sortBy( r => r._3.position.asc).map( r => (r._1,r._2)).list
-  }
+  def getTaskByColumn(columnId: Int)(implicit s: Session) : List[Task] = { //List[((Task, RelBoardColumnTask), Seq[User])] = {
 
-  def getTaskByColumn2(columnId: Int)(implicit s: Session) : List[(Task, Option[User])] = { //List[((Task, RelBoardColumnTask), Seq[User])] = {
-
-    (
-      for{
-        (task,( relUsers, user)) <- tasks leftJoin (relTaskUsers join users on (_.userGuid === _.guid)) on (_.id === _._1.taskId)
-        (boardColumnTask) <- relBoardColumnTasks if (boardColumnTask.taskId === task.id && boardColumnTask.boardColumnId === columnId)
-      } yield (task, user.?, boardColumnTask)
-    ).sortBy( r => r._3.position.asc).map( r => (r._1,r._2)).list
+    tasks
+      .leftJoin(relTaskUsers.innerJoin(users).on(_.userGuid === _.guid)).on(_.id === _._1.taskId)
+      .innerJoin(relBoardColumnTasks).on(_._1.id === _.taskId)
+      .filter(_._2.boardColumnId === columnId)
+      .map{ case (((task,(taskUser, user)), boardColumn))=>
+        (task, (user.guid.?, user.firstName.?, user.lastName.?, user.email.?, user.avatar.?))
+    }
+      .mapResult {
+        case (task: Task, (guid : Option[UUID], firstName: Option[String], lastName: Option[String], email: Option[String], avatar: Option[String])) =>
+          guid match {
+            case None =>
+              task.users = Some(Set.empty[UserSimple])
+            case _ =>
+              val userSimple = UserSimple(guid.get, firstName.get, lastName.get, email.get, avatar.get)
+              task.users = Some(Set{userSimple})
+          }
+          task
+      }.list.groupBy(_.id).mapValues {
+        taskWithSameId =>
+          taskWithSameId.reduce { (previousTask, task) =>
+            previousTask.users = Some(previousTask.users.get ++ task.users.get)
+            previousTask
+          }
+      }.values.toList
   }
 
   def addUser(taskId: Int, userGuid: UUID)(implicit s: Session): Unit ={
