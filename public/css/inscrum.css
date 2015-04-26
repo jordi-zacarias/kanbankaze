@@ -229,6 +229,15 @@ mainnav-container{
     color: #fff;
 }
 
+#burndown-chart-container a {
+    color: #fff;
+    opacity: 0.6
+}
+
+#burndown-chart-container a:hover {
+    opacity: 1;
+}
+
 #burndown-chart-container .title{
     font-size: 14px;
     border-bottom: 1px solid;

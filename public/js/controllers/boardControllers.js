@@ -104,34 +104,64 @@ boardControllers.controller("boardViewCtrl",['$scope', '$rootScope', 'boardServi
 
 
     var day_data = [
-        {"dayOfWeek": "", "expected": 60, "real": 60},
-        {"dayOfWeek": "Mon", "expected": 54, "real": 56},
-        {"dayOfWeek": "Tue", "expected": 48, "real": 45},
-        {"dayOfWeek": "Wed", "expected": 42, "real": 40},
-        {"dayOfWeek": "Thu", "expected": 36, "real": 38},
-        {"dayOfWeek": "Fri", "expected": 30, "real": 35},
-        {"dayOfWeek": "Mon", "expected": 24, "real": 30},
-        {"dayOfWeek": "Tue", "expected": 18, "real": 26},
-        {"dayOfWeek": "Wed", "expected": 12, "real": 14},
-        {"dayOfWeek": "Thu", "expected": 6, "real": 5},
-        {"dayOfWeek": "Fri", "expected": 0, "real": 0},
-    ];
+         {"dayOfWeek": "", "expected": 60, "real": 60},
+         {"dayOfWeek": "Mon", "expected": 54, "real": 56},
+         {"dayOfWeek": "Tue", "expected": 48, "real": 45},
+         {"dayOfWeek": "Wed", "expected": 42, "real": 40},
+         {"dayOfWeek": "Thu", "expected": 36, "real": 38},
+         {"dayOfWeek": "Fri", "expected": 30, "real": 35},
+         {"dayOfWeek": "Mon", "expected": 24, "real": 30},
+         {"dayOfWeek": "Tue", "expected": 18, "real": 26},
+         {"dayOfWeek": "Wed", "expected": 12, "real": 14},
+         {"dayOfWeek": "Thu", "expected": 6, "real": 5},
+         {"dayOfWeek": "Fri", "expected": 0, "real": 0},
+     ];
 
-    Morris.Line({
-        element: 'burndown-chart',
-        data: day_data,
-        xkey: 'dayOfWeek',
-        labels: 'dayOfWeek',
-        ykeys: ['expected', 'real'],
-        gridEnabled: false,
-        gridLineColor: 'transparent',
-        lineColors: ['red', 'white'],
-        lineWidth: [1,2],
-        pointSize: [0,4],
-        parseTime: false,
-        resize:true,
-        hideHover: 'auto',
-        xLabelAngle: 45,
-        gridTextColor: '#fff'
-    });
+     Morris.Line({
+         element: 'burndown-chart',
+         data: day_data,
+         xkey: 'dayOfWeek',
+         labels: 'dayOfWeek',
+         ykeys: ['expected', 'real'],
+         gridEnabled: false,
+         gridLineColor: 'transparent',
+         lineColors: ['red', 'white'],
+         lineWidth: [1,2],
+         pointSize: [0,4],
+         parseTime: false,
+         resize:true,
+         hideHover: 'auto',
+         xLabelAngle: 45,
+         gridTextColor: '#fff'
+     });
+
+//    var lineChartData = {
+//        labels : ["","Mon","Tue","Wed","Thu","Fri","Mon","Tue","Wed","Thu","Fri"],
+//        datasets : [
+//            {
+//                label: "Expected",
+//                pointStrokeColor : "#fff",
+//                pointHighlightFill : "#fff",
+//                pointHighlightStroke : "rgba(220,220,220,1)",
+//                data : [60, 54, 48, 42, 36, 30, 24, 18, 12, 6, 0]
+//            },
+//            {
+//                label: "My Second dataset",
+//                fillColor : "rgba(151,187,205,0.2)",
+//                strokeColor : "rgba(151,187,205,1)",
+//                pointColor : "rgba(151,187,205,1)",
+//                pointStrokeColor : "#fff",
+//                pointHighlightFill : "#fff",
+//                pointHighlightStroke : "rgba(151,187,205,1)",
+//                data : [60, 56, 45, 40, 28, 25, 30, 26, 14, 5, 0]
+//            }
+//        ]
+//    }
+//
+//    var ctx = document.getElementById("burndown-canvas").getContext("2d");
+//        window.myLine = new Chart(ctx).Line(lineChartData, {
+//        responsive: true
+//    });
+
+    $("#burndown-chart-container").hide();
 }]);

@@ -93,7 +93,7 @@ CREATE TABLE `board_column_task` (
 
 LOCK TABLES `board_column_task` WRITE;
 /*!40000 ALTER TABLE `board_column_task` DISABLE KEYS */;
-INSERT INTO `board_column_task` VALUES (1,2,1),(1,4,0),(2,3,0),(3,1,1),(3,5,0);
+INSERT INTO `board_column_task` VALUES (1,2,1),(2,3,0),(2,4,1),(3,5,0),(4,1,0);
 /*!40000 ALTER TABLE `board_column_task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,6 +179,7 @@ CREATE TABLE `task_user` (
 
 LOCK TABLES `task_user` WRITE;
 /*!40000 ALTER TABLE `task_user` DISABLE KEYS */;
+INSERT INTO `task_user` VALUES (1,'GÄÓ	FÉ—Bë+s™Áž'),(2,'£ô–XÆ¨Aj¸ûaµ£ƒ'),(5,'£ô–XÆ¨Aj¸ûaµ£ƒ'),(5,'³ÙQ@ù¶ýqý kBë'),(3,'òG|Ú…õ@ž^‡-¹ÃF');
 /*!40000 ALTER TABLE `task_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,6 +196,7 @@ CREATE TABLE `user` (
   `last_name` varchar(45) DEFAULT NULL,
   `email` varchar(128) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
+  `avatar` varchar(256) DEFAULT NULL,
   `salt` varchar(256) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `created_by_guid` binary(16) DEFAULT NULL,
@@ -212,7 +214,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('£ô–XÆ¨Aj¸ûaµ£ƒ','test','test','t@t.com','$2a$10$9bbeHaJImEaEaG/ObAmY4.E4jLakTAjkMyaVTuki7yeTmLRqz.s9y','$2a$10$9bbeHaJImEaEaG/ObAmY4.','2015-04-12 13:24:44','u•vI{˜\0õ3c“u','2015-04-12 13:24:44','u•vI{˜\0õ3c“u',NULL,NULL);
+INSERT INTO `user` VALUES ('GÄÓ	FÉ—Bë+s™Áž','QA','Engineer','qa@kanbankaze.com','$2a$10$pv7Za6I6PK8JPlrEsQW3Ju78MYcyRd.QlvfVBU5r4dBByPfABa8zi','profile/qa_128x128.png','$2a$10$pv7Za6I6PK8JPlrEsQW3Ju','2015-04-26 19:46:06','è\nUÊsŒD‘\\Š–®ÌÓ','2015-04-26 19:46:06','è\nUÊsŒD‘\\Š–®ÌÓ',NULL,NULL),('£ô–XÆ¨Aj¸ûaµ£ƒ','test','test','t@t.com','$2a$10$9bbeHaJImEaEaG/ObAmY4.E4jLakTAjkMyaVTuki7yeTmLRqz.s9y','user.png','$2a$10$9bbeHaJImEaEaG/ObAmY4.','2015-04-12 13:24:44','u•vI{˜\0õ3c“u','2015-04-12 13:24:44','u•vI{˜\0õ3c“u',NULL,NULL),('³ÙQ@ù¶ýqý kBë','Developer','1','dev1@kanbankaze.com','$2a$10$m/mFJCagJI9t5ROCP/k6tu7LjCCNHNAf4f9YQ/7ATuEVLlTtoUEwq','profile/dev_128x128.png','$2a$10$m/mFJCagJI9t5ROCP/k6tu','2015-04-26 19:45:10','Mà@TM™ŠûÓ-_•Æ','2015-04-26 19:45:10','Mà@TM™ŠûÓ-_•Æ',NULL,NULL),('Ô\03Éü×E8Œèçj¾','Scrum','Master','scrummaster@kanbankaze.com','$2a$10$J.YkpOn9duAAByXG9TxM8ORyEWOwXpmUeGhbPY93Zc9JRIFT47FVG','profile/scrumMaster_128x128.png','$2a$10$J.YkpOn9duAAByXG9TxM8O','2015-04-26 19:43:50','úø3¬ÑÇO¾«\n3ù=?‹õ','2015-04-26 19:43:50','úø3¬ÑÇO¾«\n3ù=?‹õ',NULL,NULL),('òG|Ú…õ@ž^‡-¹ÃF','Product','Owner','product@kanbankaze.com','$2a$10$8KPm0mqiz7rIY14ZnMKBH.usTOohPblb1G3IdsRhHGc0fDgu0i8l2','profile/productOwner_128x128.png','$2a$10$8KPm0mqiz7rIY14ZnMKBH.','2015-04-26 19:46:47','¹ÈY®;I=‚>/V»DX','2015-04-26 19:46:47','¹ÈY®;I=‚>/V»DX',NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,7 +247,7 @@ CREATE TABLE `user_access_tokens` (
 
 LOCK TABLES `user_access_tokens` WRITE;
 /*!40000 ALTER TABLE `user_access_tokens` DISABLE KEYS */;
-INSERT INTO `user_access_tokens` VALUES ('NDhiMzQ4Y2YtNmUwYy00MWU0LTljMTItYzliYTVhOTRjMzRm','NjczYjUxNzItYjNhOC00Y2M4LThmYmYtN2ZmNWY0N2FiODhi','£ô–XÆ¨Aj¸ûaµ£ƒ',NULL,3600,'2015-04-20 21:30:58','web-application');
+INSERT INTO `user_access_tokens` VALUES ('YmY1NjliZGMtNWI2NS00YjA3LTgwYjYtYWY5NTRmY2NhMGJm','NDE5YmVlZmItOTAxZS00NDE0LWIzMzQtZjJkZDU4NTdjZWI1','£ô–XÆ¨Aj¸ûaµ£ƒ',NULL,3600,'2015-04-26 19:58:59','web-application');
 /*!40000 ALTER TABLE `user_access_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -396,4 +398,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-21 19:44:16
+-- Dump completed on 2015-04-26 21:48:21
