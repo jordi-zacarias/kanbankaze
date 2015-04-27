@@ -77,6 +77,7 @@ object TaskController extends Controller {
           "acceptanceCriteria" -> t.acceptanceCriteria,
           "blocked" -> t.blocked,
           "blockedReason" -> t.blockedReason.fold("")(identity),
+          "position" -> t.position,
           "users" -> t.users
         )
       }

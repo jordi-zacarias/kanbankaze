@@ -45,32 +45,38 @@ object TaskRepository {
     ).sortBy( r => (r._2.boardColumnId, r._2.position)).list
   }
 
-  def getTaskByColumn(columnId: Int)(implicit s: Session) : List[Task] = { //List[((Task, RelBoardColumnTask), Seq[User])] = {
+  def getTaskByColumn(columnId: Int)(implicit s: Session) : List[Task] = {
 
     tasks
       .leftJoin(relTaskUsers.innerJoin(users).on(_.userGuid === _.guid)).on(_.id === _._1.taskId)
       .innerJoin(relBoardColumnTasks).on(_._1.id === _.taskId)
       .filter(_._2.boardColumnId === columnId)
-      .map{ case (((task,(taskUser, user)), boardColumn))=>
-        (task, (user.guid.?, user.firstName.?, user.lastName.?, user.email.?, user.avatar.?))
+      .map {
+      case (((task, (taskUser, user)), boardColumn)) =>
+        (task, (user.guid.?, user.firstName.?, user.lastName.?, user.email.?, user.avatar.?, boardColumn.position))
     }
       .mapResult {
-        case (task: Task, (guid : Option[UUID], firstName: Option[String], lastName: Option[String], email: Option[String], avatar: Option[String])) =>
-          guid match {
-            case None =>
-              task.users = Some(Set.empty[UserSimple])
-            case _ =>
-              val userSimple = UserSimple(guid.get, firstName.get, lastName.get, email.get, avatar.get)
-              task.users = Some(Set{userSimple})
-          }
-          task
-      }.list.groupBy(_.id).mapValues {
-        taskWithSameId =>
-          taskWithSameId.reduce { (previousTask, task) =>
-            previousTask.users = Some(previousTask.users.get ++ task.users.get)
-            previousTask
-          }
-      }.values.toList
+      case (task: Task, (guid: Option[UUID], firstName: Option[String], lastName: Option[String], email: Option[String], avatar: Option[String], position: Int)) =>
+        guid match {
+          case None =>
+            task.users = Some(Set.empty[UserSimple])
+          case _ =>
+            val userSimple = UserSimple(guid.get, firstName.get, lastName.get, email.get, avatar.get)
+            task.users = Some(Set {
+              userSimple
+            })
+        }
+        task.position = position
+        task
+    }.list.groupBy(_.id).mapValues {
+      taskWithSameId =>
+        taskWithSameId.reduce { (previousTask, task) =>
+          previousTask.users = Some(previousTask.users.get ++ task.users.get)
+          previousTask
+        }
+    }
+      .values
+      .toList
   }
 
   def addUser(taskId: Int, userGuid: UUID)(implicit s: Session): Unit ={

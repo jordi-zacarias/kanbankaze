@@ -3,7 +3,7 @@
 var boardControllers = angular.module("controllers.board", []);
 
 
-boardControllers.controller("boardViewCtrl",['$scope', '$rootScope', 'boardService', 'taskService', function($scope, $rootScope, boardService, taskService) {
+boardControllers.controller("boardViewCtrl",['$scope', '$rootScope', 'boardService', 'taskService', '$filter', function($scope, $rootScope, boardService, taskService, $filter) {
 
     var boardId = 1;
     $scope.refreshBoard = false;
@@ -17,7 +17,11 @@ boardControllers.controller("boardViewCtrl",['$scope', '$rootScope', 'boardServi
 
                 taskService.findByColumn(column.id).then(function (tasks){
                     $scope.refreshBoard = false;
-                    column.tasks = tasks.items;
+                    if (tasks.items.length > 0){
+                        column.tasks = $filter("orderBy")(tasks.items, "position");
+                    }else{
+                        column.tasks = [];
+                    }
                     var popover = $('.add-popover');
                     if (popover.length)popover.popover();
                 });
