@@ -45,19 +45,6 @@ object TaskRepository {
     ).sortBy( r => (r._2.boardColumnId, r._2.position)).list
   }
 
-//  def getTaskByColumn(columnId: Int)(implicit s: Session) : List[(Task, User)] = { //List[((Task, RelBoardColumnTask), Seq[User])] = {
-//
-//    (
-//      for{
-//        task <- tasks leftJoin relTaskUsers on (_.id === _.taskId)
-//        user <- users if (user.guid === task._2.userGuid)
-//        boardColumnTask <- relBoardColumnTasks if (boardColumnTask.taskId === task._1.id && boardColumnTask.boardColumnId === columnId)
-//      } yield (task._1, user, boardColumnTask)
-//    ).sortBy( r => r._3.position.asc)
-//    .map( r => (r._1,r._2))
-//    .list
-//  }
-
   def getTaskByColumn(columnId: Int)(implicit s: Session) : List[Task] = { //List[((Task, RelBoardColumnTask), Seq[User])] = {
 
     tasks
@@ -89,5 +76,9 @@ object TaskRepository {
   def addUser(taskId: Int, userGuid: UUID)(implicit s: Session): Unit ={
     val taskUser = RelTaskUser(taskId, userGuid)
     relTaskUsers += taskUser
+  }
+
+  def removeUsers(taskId: Int)(implicit s: Session): Unit ={
+    relTaskUsers.filter(tu => tu.taskId === taskId).delete
   }
 }

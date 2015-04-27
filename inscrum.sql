@@ -95,7 +95,7 @@ CREATE TABLE `board_column_task` (
 
 LOCK TABLES `board_column_task` WRITE;
 /*!40000 ALTER TABLE `board_column_task` DISABLE KEYS */;
-INSERT INTO `board_column_task` VALUES (1,2,0),(1,7,1),(1,10,2),(1,11,2),(1,12,4),(1,13,5),(2,3,0),(2,4,1),(3,5,0),(4,1,0);
+INSERT INTO `board_column_task` VALUES (1,2,0),(2,3,0),(2,4,1),(3,5,0),(4,1,0);
 /*!40000 ALTER TABLE `board_column_task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +124,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES (1,'Start learning Scala','Download different tutorial and start with the basis. Good books to read are O¬¥Reilly for example',1,'Acceptance 1','\0',NULL),(2,'Choose a IDE to Develop','Download three IDE¬¥s (Eclipse, NetBeans, IntelliJ). Do some test developing Scala applications and see what of them suits better for me',2,'Acceptance 2','\0',NULL),(3,'Get used to the basis of the language','Develop some examples and create my own programs no get used to the language',2,'Acceptance 3','\0',NULL),(4,'Start learning Play framework using Scala','Go to Play Framework page. Download tutorials and examples.',1,'Acceptance 4','','This task will be blocked until Devin realize that he has to hire me by hook or by crook'),(5,'Start Kanbankaze as an Open Source Project','Create a new Play Project usign Activator',3,'Acceptance 5','\0',NULL),(7,'sddasds','asdsadas',1,'','\0',''),(10,'adsfdsfads','dfasf',1,'adsfds','\0',''),(11,'aaaaaaaaaa','fdads',1,'dfsa','\0',''),(12,'bbbbbbbbbbbbbbbbb','badfsf',1,'asdffds','\0',''),(13,'dfsadf','dsafds',1,'dsafd','\0','');
+INSERT INTO `task` VALUES (1,'Start learning Scala','Download different tutorial and start with the basis. Good books to read are O¬¥Reilly for example',1,'Acceptance 1','\0',NULL),(2,'Choose a IDE to Develop','Download three IDE¬¥s (Eclipse, NetBeans, IntelliJ). Do some test developing Scala applications and see what of them suits better for me',2,'Acceptance 2','\0',NULL),(3,'Get used to the basis of the language','Develop some examples and create my own programs no get used to the language',2,'Acceptance 3','\0',NULL),(4,'Start learning Play framework using Scala','Go to Play Framework page. Download tutorials and examples.',1,'Acceptance 4','','This task will be blocked until Devin realize that he has to hire me by hook or by crook'),(5,'Start Kanbankaze as an Open Source Project','Create a new Play Project usign Activator',3,'Acceptance 5','\0',NULL);
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +181,7 @@ CREATE TABLE `task_user` (
 
 LOCK TABLES `task_user` WRITE;
 /*!40000 ALTER TABLE `task_user` DISABLE KEYS */;
-INSERT INTO `task_user` VALUES (1,'Gƒ”	F…óBÎ+sô¡û'),(2,'£ÙñX∆®Aj∏˚aµ£É'),(5,'£ÙñX∆®Aj∏˚aµ£É'),(5,'≥ŸQÅ@˘∂˝q˝ kBÎ'),(7,'‘\03…¸◊E8åËÁjæ'),(3,'ÚG|⁄Öı@çùû^á-π√F');
+INSERT INTO `task_user` VALUES (1,'Gƒ”	F…óBÎ+sô¡û'),(2,'£ÙñX∆®Aj∏˚aµ£É'),(5,'£ÙñX∆®Aj∏˚aµ£É'),(5,'≥ŸQÅ@˘∂˝q˝ kBÎ'),(3,'ÚG|⁄Öı@çùû^á-π√F');
 /*!40000 ALTER TABLE `task_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -400,4 +400,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-27 13:52:16
+-- Dump completed on 2015-04-27 14:20:29
