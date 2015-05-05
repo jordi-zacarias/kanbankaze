@@ -254,6 +254,10 @@ mainnav-container{
     width: 200px;
 }
 
+.dropdown-menu{
+    font-size: inherit;
+}
+
 @media (max-width: 767px) {
     
     body{

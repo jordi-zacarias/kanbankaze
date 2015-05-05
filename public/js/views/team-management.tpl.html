@@ -1,0 +1,26 @@
+<div class="boxed" ng-controller="teamManagementCtrl">
+    <div id="content-container">
+        <div id="page-title" class="clearfix">
+            <h1 class="page-header text-overflow">Teams & Users</h1>
+        </div>
+
+        <div id="page-content">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-base">
+                        <ul class="nav nav-tabs">
+                            <li ng-repeat="tab in tabs" ng-class="{active: $index == activeTab}">
+                                <a href="" data-toggle="tab" ng-click="setActiveTab($index)">{{tabs[$index].name}}</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" ng-include="tabs[activeTab].template">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -38,6 +38,10 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'localStorag
     $routeProvider.when('/board', {
         templateUrl:'assets/js/views/board.tpl.html'
     });
+
+    $routeProvider.when('/team-management', {
+        templateUrl:'assets/js/views/team-management.tpl.html'
+    });
     
     $routeProvider.otherwise({
        redirectTo: '/board'

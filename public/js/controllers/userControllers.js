@@ -20,3 +20,26 @@ userControllers.controller("teamListCtrl",
     });
 
 }]);
+
+userControllers.controller("teamManagementCtrl",
+    ['$scope', function($scope){
+
+    $scope.activeTab = 0;
+
+    $scope.setActiveTab = function(index){
+        $scope.activeTab = index;
+    }
+
+    $scope.tabs = [
+        {
+            name: "Teams",
+            disabled: false,
+            template: "assets/js/views/admin/teams.tpl.html"
+        },
+        {
+            name: "Users",
+            disabled: false,
+            template: "assets/js/views/admin/users.tpl.html"
+        }
+    ];
+}]);
