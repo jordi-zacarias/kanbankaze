@@ -11,25 +11,32 @@
                 <div class="row">
                 <div class="col-md-12">
                     <form class="form-horizontal">
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error': (validation.title != '')}">
                             <lable class="col-sm-2 control-label" for="title">Title</lable>
-                            <div class="col-sm-10"><input type="text" name="title" class="form-control" ng-model="task.title"/></div>
+                            <div class="col-sm-10">
+                                <input type="text" name="title" class="form-control" ng-model="task.title" maxlength="256" />
+                                <small class="help-block" ng-show="validation.title != ''">{{validation.title}}</small>
+                            </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error': (validation.description != '')}">
                             <lable class="col-sm-2 control-label" for="description">Description</lable>
-                            <div class="col-sm-10"><textarea name="description" class="form-control" ng-model="task.description"></textarea></div>
+                            <div class="col-sm-10">
+                                <textarea name="description" class="form-control" ng-model="task.description" maxlength="4000"></textarea>
+                                <small class="help-block" ng-show="validation.description != ''">{{validation.description}}</small>
+                            </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error': (validation.estimation != '')}">
                             <lable class="col-sm-2 control-label" for="estimation">Estimation</lable>
                             <div class="col-sm-10">
-                                <input type="text" name="estimation" class="form-control" ng-model="task.estimation"/>
-                                <small class="help-block">Hours are evil. Use points intead</small>
+                                <input type="text" name="estimation" class="form-control" ng-model="task.estimation" maxlength="4"/>
+                                <small class="help-block" ng-hide="validation.estimation != ''">Hours are evil. Use points intead</small>
+                                <small class="help-block" ng-show="validation.estimation != ''">{{validation.estimation}}</small>
                             </div>
                         </div>
                         <div class="form-group">
                             <lable class="col-sm-2 control-label" for="title">Acceptance Criteria</lable>
-                            <div class="col-sm-10"><textarea name="acceptanceCriteria" class="form-control" ng-model="task.acceptanceCriteria"></textarea></div>
+                            <div class="col-sm-10"><textarea name="acceptanceCriteria" class="form-control" ng-model="task.acceptanceCriteria" maxlength="4000"></textarea></div>
                         </div>
 
                     </form>

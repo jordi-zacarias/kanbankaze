@@ -12,7 +12,7 @@
     <link href="@routes.Assets.at("css/bootstrap.min.css")" rel="stylesheet" />
     <link href="@routes.Assets.at("libs/bootstrap-datepicker/bootstrap-datepicker.css")" rel="stylesheet" />
     <link href="@routes.Assets.at("libs/font-awesome/css/font-awesome.css")" rel="stylesheet" />
-    <link href="@routes.Assets.at("libs/pace/pace.min.css")" rel="stylesheet")" />
+    <link href="@routes.Assets.at("libs/pace/pace.min.css")" rel="stylesheet" />
     <link href="@routes.Assets.at("css/base.css")" rel="stylesheet" />
     <link href="@routes.Assets.at("css/inscrum.css")" rel="stylesheet" />
 
@@ -208,52 +208,52 @@
 
     <div id="bg-overlay" class="bg-img img-balloon" style="background-image: url('@routes.Assets.at("images/bg-login.jpg")');"></div>
 
-    <div class="cls-header cls-header-lg">
-        <div class="cls-brand">
-            <img src="@routes.Assets.at("images/logo-default.png")" alt="Tablet">
-        </div>
+<div class="cls-header cls-header-lg">
+    <div class="cls-brand">
+        <img src="@routes.Assets.at("images/logo-default.png")" alt="Tablet">
     </div>
-    <div class="cls-content">
-        <div class="cls-content-sm panel">
-            <div class="panel-alert" ng-show="error">
-                <div class="alert-wrap in">
-                    <div id="alert-message" class="alert alert-danger" role="alert">
-                        <button class="close" type="button" >
-                            <i class="fa fa-times-circle"></i>
-                        </button>
-                        <div class="media">
-                            <strong>Error!</strong>
-                            Bad credentials
-                        </div>
+</div>
+<div class="cls-content">
+    <div class="cls-content-sm panel">
+        <div class="panel-alert" ng-show="error">
+            <div class="alert-wrap in">
+                <div id="alert-message" class="alert alert-danger" role="alert">
+                    <button class="close" type="button" >
+                        <i class="fa fa-times-circle"></i>
+                    </button>
+                    <div class="media">
+                        <strong>Error!</strong>
+                        Bad credentials
                     </div>
                 </div>
             </div>
-            <div class="panel-body" >
-                <p class="pad-btm">Sign In to your Account</p>
-                <form ng-submit="login()">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                            <input type="text" class="form-control" placeholder="Username" ng-model="credentials.username" >
+        </div>
+        <div class="panel-body" >
+            <p class="pad-btm">Sign In to your Account</p>
+            <form ng-submit="login()">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                        <input type="text" class="form-control" placeholder="Username" ng-model="credentials.username" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                        <input type="password" class="form-control" placeholder="Password" ng-model="credentials.password" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group text-right">
+                            <button class="btn btn-success text-uppercase" type="submit" >Sign In</button>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
-                            <input type="password" class="form-control" placeholder="Password" ng-model="credentials.password" >
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="form-group text-right">
-                                <button class="btn btn-success text-uppercase" type="submit" >Sign In</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 <!-- END - LOGIN PAGE -->
 

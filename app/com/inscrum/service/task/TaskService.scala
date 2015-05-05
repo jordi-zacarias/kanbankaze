@@ -26,6 +26,7 @@ object TaskService {
     DB{ implicit session =>
       session.withTransaction {
         RelBoardColumnTaskRepository.deleteTask(taskId)
+        TaskRepository.removeUsers(taskId)
         TaskRepository.delete(taskId)
       }
     }
@@ -41,24 +42,6 @@ object TaskService {
       TaskRepository.getTaskByBoard(boardId)
     }
   }
-
-//  def getTaskByColumn(columnId: Int) : List[(Task, Seq[User])] = {
-//    DB { implicit session =>
-//      val taskByColumn = TaskRepository.getTaskByColumn(columnId)
-//
-//      taskByColumn.foldLeft(ListMap.empty[Task, Seq[User]]) {
-//        case (theMap, (task, newUser)) => {
-//
-//          val listUsers = theMap.get(task) match {
-//            case None => Seq(newUser)
-//            case Some(existingUsers) => existingUsers :+ newUser
-//          }
-//
-//          theMap + ((task, listUsers))
-//        }
-//      }.toList
-//    }
-//  }
 
   def getTaskByColumn(columnId: Int) : List[Task] = {
     DB { implicit session =>

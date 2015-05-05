@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=latin">
     <link href="@routes.Assets.at("css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@routes.Assets.at("libs/bootstrap-datepicker/bootstrap-datepicker.css")" rel="stylesheet" />
     <link href="@routes.Assets.at("libs/font-awesome/css/font-awesome.css")" rel="stylesheet" />
     <link href="@routes.Assets.at("libs/pace/pace.min.css")" rel="stylesheet")" />
     <link href="@routes.Assets.at("css/base.css")" rel="stylesheet" />
@@ -25,14 +26,53 @@
     <div class="pace-activity"></div>
 </div>
 
-<div id="container" class="effect mainnav-lg">
+<div id="container" class="effect mainnav-out">
+
+    <!--NAVBAR-->
+    <!--===================================================-->
     <header id="navbar">
-        <div id="navbar-container" class="boxed">
-            <div class="navbar-content clearfix">
-                <a href="index.html" class="navbar-brand">
-                    <img src="@routes.Assets.at("images/logo.png")" alt="Tablet" class="brand-icon">
+        <div id="navbar-container" class="boxed" ng-controller="navbarCtrl">
+
+            <!--Brand logo & name-->
+            <!--================================-->
+            <div class="navbar-header">
+                <a href="#/" class="navbar-brand">
+                    <img src="@routes.Assets.at("images/logo-default.png")" alt="Nifty Logo" class="brand-icon">
+                    <div class="brand-title">
+                        <span class="brand-text">Kanbankaze</span>
+                    </div>
                 </a>
+            </div>
+            <!--================================-->
+            <!--End brand logo & name-->
+
+
+            <!--Navbar Dropdown-->
+            <!--================================-->
+            <div class="navbar-content clearfix">
+                <ul class="nav navbar-top-links pull-left">
+
+                    <li class="dropdown">
+                        <a href="" ng-click="toggleAside()">
+                            <i class="fa fa-users fa-lg"></i>
+                            <span class="badge badge-header badge-info">5</span>
+                        </a>
+                    </li>
+
+                    <!--Notification dropdown-->
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <li class="dropdown">
+                        <!--<a href="" ng-click="toggleBurndown()">-->
+                        <a href="" onclick="$('#burndown-chart-container').slideToggle('slow');">
+                            <i class="fa fa-line-chart fa-lg"></i>
+                        </a>
+                    </li>
+
+                </ul>
                 <ul class="nav navbar-top-links pull-right">
+
+                    <!--User dropdown-->
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                     <li id="dropdown-user" class="dropdown">
                         <a href="" data-toggle="dropdown" class="dropdown-toggle text-right">
                                     <span class="pull-right">
@@ -43,7 +83,7 @@
                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-right with-arrow panel-default">
                             <ul class="head-list">
                                 <li>
-                                    <a href="#">
+                                    <a href="">
                                         <i class="fa fa-question-circle fa-fw fa-lg"></i> Help
                                     </a>
                                 </li>
@@ -56,6 +96,8 @@
                             </div>
                         </div>
                     </li>
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <!--End user dropdown-->
                     <li>
                                 <span>
                                     <i class="fa fa-clock-o"></i> <clock format="HH:mm"></clock> GMT
@@ -66,79 +108,135 @@
                             <i class="fa fa-power-off"></i>
                         </a>
                     </li>
+
                 </ul>
             </div>
+            <!--================================-->
+            <!--End Navbar Dropdown-->
+
         </div>
     </header>
+    <!--===================================================-->
+    <!--END NAVBAR-->
 
     <div ng-view></div>
 
-    <footer id="footer">
-        <div class="hide-fixed pull-right pad-rgt">Version 11.0</div>
-        <p class="pad-lft">&#0169; 2015 inScrum</p>
-    </footer>
 
+
+    <!-- FOOTER -->
+    <!--===================================================-->
+    <footer id="footer">
+
+        <!-- Visible when footer positions are fixed -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <div class="show-fixed pull-right">
+            <ul class="footer-list list-inline">
+                <li>
+                    <p class="text-sm">SEO Proggres</p>
+                    <div class="progress progress-sm progress-light-base">
+                        <div style="width: 80%" class="progress-bar progress-bar-danger"></div>
+                    </div>
+                </li>
+
+                <li>
+                    <p class="text-sm">Online Tutorial</p>
+                    <div class="progress progress-sm progress-light-base">
+                        <div style="width: 80%" class="progress-bar progress-bar-primary"></div>
+                    </div>
+                </li>
+                <li>
+                    <button class="btn btn-sm btn-dark btn-active-success">Checkout</button>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <!-- Visible when footer positions are static -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <div class="hide-fixed pull-right pad-rgt">Currently v2.2</div>
+
+
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- Remove the class name "show-fixed" and "hide-fixed" to make the content always appears. -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <p class="pad-lft">&#0169; 2015 Your Company</p>
+
+
+
+    </footer>
+    <!--===================================================-->
+    <!-- END FOOTER -->
+
+
+    <!-- SCROLL TOP BUTTON -->
+    <!--===================================================-->
     <button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
+    <!--===================================================-->
+
+
 
 </div>
 
 <!-- LOGIN PAGE -->
 <div id="login-holder" class="cls-container" style="display:none;" ng-controller="loginCtrl">
 
-    <div id="bg-overlay" class="bg-img img-balloon" style="background-image: url('images/bg-login.jpg');"></div>
+    <div id="bg-overlay" class="bg-img img-balloon" style="background-image: url('@routes.Assets.at("images/bg-login.jpg")');"></div>
 
-    <div class="cls-header cls-header-lg">
-        <div class="cls-brand">
-            <img src="@routes.Assets.at("images/logo-medium.png")" alt="Tablet">
-        </div>
+<div class="cls-header cls-header-lg">
+    <div class="cls-brand">
+        <img src="@routes.Assets.at("images/logo-default.png")" alt="Tablet">
     </div>
-    <div class="cls-content">
-        <div class="cls-content-sm panel">
-            <div class="panel-alert" ng-show="error">
-                <div class="alert-wrap in">
-                    <div id="alert-message" class="alert alert-danger" role="alert">
-                        <button class="close" type="button" >
-                            <i class="fa fa-times-circle"></i>
-                        </button>
-                        <div class="media">
-                            <strong>Error!</strong>
-                            Bad credentials
-                        </div>
+</div>
+<div class="cls-content">
+    <div class="cls-content-sm panel">
+        <div class="panel-alert" ng-show="error">
+            <div class="alert-wrap in">
+                <div id="alert-message" class="alert alert-danger" role="alert">
+                    <button class="close" type="button" >
+                        <i class="fa fa-times-circle"></i>
+                    </button>
+                    <div class="media">
+                        <strong>Error!</strong>
+                        Bad credentials
                     </div>
                 </div>
             </div>
-            <div class="panel-body" >
-                <p class="pad-btm">Sign In to your Account</p>
-                <form ng-submit="login()">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-users"></i></div>
-                            <input type="text" class="form-control" placeholder="Username" ng-model="credentials.username" >
+        </div>
+        <div class="panel-body" >
+            <p class="pad-btm">Sign In to your Account</p>
+            <form ng-submit="login()">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                        <input type="text" class="form-control" placeholder="Username" ng-model="credentials.username" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
+                        <input type="password" class="form-control" placeholder="Password" ng-model="credentials.password" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group text-right">
+                            <button class="btn btn-success text-uppercase" type="submit" >Sign In</button>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
-                            <input type="password" class="form-control" placeholder="Password" ng-model="credentials.password" >
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="form-group text-right">
-                                <button class="btn btn-success text-uppercase" type="submit" >Sign In</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 <!-- END - LOGIN PAGE -->
 
 <div id="modal-logout" class="modal fade in" aria-hidden="true" aria-labelledby="modal-logout" tabindex="-1" role="dialog" style="display: none;">
     <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+        <div class="modal-content" ng-controller="logoutCtrl">
             <div class="modal-header">
                 <button class="close" type="button" data-dismiss="modal">
                     <span aria-hidden="true">×</span>
@@ -150,7 +248,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-link" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary" data-dismiss="modal">Yes, Log me out!</button>
+                <button class="btn btn-primary" data-dismiss="modal" ng-click="logout()">Yes, Log me out!</button>
             </div>
         </div>
     </div>
@@ -166,10 +264,15 @@
 
 <script src="@routes.Assets.at("libs/jquery/jquery.min.js")"></script>
 <script src="@routes.Assets.at("libs/bootstrap/bootstrap.min.js")"></script>
+<script src="@routes.Assets.at("libs/bootstrap-datepicker/bootstrap-datepicker.js")"></script>
+
+<script src="@routes.Assets.at("libs/angular-strap/angular-strap.min.js")"></script>
+<script src="@routes.Assets.at("libs/angular-strap/angular-strap.tpl.min.js")"></script>
 
 
 <script src="@routes.Assets.at("libs/morris-js/morris.min.js")"></script>
 <script src="@routes.Assets.at("libs/morris-js/raphael-js/raphael.min.js")"></script>
+<script src="@routes.Assets.at("libs/chart/Chart.min.js")"></script>
 
 <script type='text/javascript'>
             window.paceOptions = {
@@ -194,14 +297,19 @@
 <script src="@routes.Assets.at("js/services/authenticationService.js")"></script>
 <script src="@routes.Assets.at("js/services/boardServices.js")"></script>
 <script src="@routes.Assets.at("js/services/taskServices.js")"></script>
+<script src="@routes.Assets.at("js/services/userServices.js")"></script>
 
 <script src="@routes.Assets.at("js/directives/commonDirectives.js")"></script>
 <script src="@routes.Assets.at("js/directives/listDirectives.js")"></script>
 <script src="@routes.Assets.at("js/directives/authDirective.js")"></script>
 <script src="@routes.Assets.at("js/directives/ng-sortable.js")"></script>
+<script src="@routes.Assets.at("js/directives/ngDraggable.js")"></script>
 
+<script src="@routes.Assets.at("js/controllers/generalControllers.js")"></script>
 <script src="@routes.Assets.at("js/controllers/loginController.js")"></script>
 <script src="@routes.Assets.at("js/controllers/boardControllers.js")"></script>
+<script src="@routes.Assets.at("js/controllers/taskControllers.js")"></script>
+<script src="@routes.Assets.at("js/controllers/userControllers.js")"></script>
 
 </body>
 </html>

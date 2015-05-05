@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `inscrum` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `inscrum`;
+-- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
 --
--- Host: localhost    Database: inscrum
+-- Host: 127.0.0.1    Database: inscrum
 -- ------------------------------------------------------
--- Server version	5.6.22-log
+-- Server version	5.5.34
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -36,7 +38,7 @@ CREATE TABLE `board` (
 
 LOCK TABLES `board` WRITE;
 /*!40000 ALTER TABLE `board` DISABLE KEYS */;
-INSERT INTO `board` VALUES (1,'Work at Nitro','Steps to get a job in Nitro showing how amazing I am');
+INSERT INTO `board` VALUES (1,'Working at Nitro','Steps to get a job in Nitro showing how amazing I am');
 /*!40000 ALTER TABLE `board` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +95,7 @@ CREATE TABLE `board_column_task` (
 
 LOCK TABLES `board_column_task` WRITE;
 /*!40000 ALTER TABLE `board_column_task` DISABLE KEYS */;
-INSERT INTO `board_column_task` VALUES (1,2,1),(2,3,0),(2,4,1),(3,5,0),(4,1,0);
+INSERT INTO `board_column_task` VALUES (1,2,0),(2,3,0),(2,4,1),(3,5,0),(4,1,0);
 /*!40000 ALTER TABLE `board_column_task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,13 +109,13 @@ DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task` (
   `task_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(256) DEFAULT NULL,
-  `description` varchar(400) DEFAULT NULL,
+  `description` varchar(4000) DEFAULT NULL,
   `estimation` int(11) DEFAULT NULL,
-  `acceptance_criteria` varchar(400) DEFAULT NULL,
+  `acceptance_criteria` varchar(4000) DEFAULT NULL,
   `blocked` bit(1) DEFAULT b'0',
   `blocked_reason` varchar(4000) DEFAULT NULL,
   PRIMARY KEY (`task_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +124,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES (1,'Start learning Scala','Download different tutorial and start with the basis. Good books to read are OÂ´Reilly for example',1,'Acceptance 1','\0',NULL),(2,'Choose a IDE to Develop','Download three IDEÂ´s (Eclipse, NetBeans, IntelliJ). Do some test developing Scala applications and see what of them suits better for me',2,'Acceptance 2','\0',NULL),(3,'Get used to the basis of the language','Develop some examples and create my own programs no get used to the language',2,'Acceptance 3','\0',NULL),(4,'Start learning Play framework using Scala','Go to Play Framework page. Download tutorials and examples.',1,'Acceptance 4','','This task will be blocked until Devin realize that has to hire me by hook or by crook'),(5,'Start Kanbankaze as an Open Source Project','Create a new Play Project usign Activator',3,'Acceptance 5','\0',NULL);
+INSERT INTO `task` VALUES (1,'Start learning Scala','Download different tutorial and start with the basis. Good books to read are OÂ´Reilly for example',1,'Acceptance 1','\0',NULL),(2,'Choose a IDE to Develop','Download three IDEÂ´s (Eclipse, NetBeans, IntelliJ). Do some test developing Scala applications and see what of them suits better for me',2,'Acceptance 2','\0',NULL),(3,'Get used to the basis of the language','Develop some examples and create my own programs no get used to the language',2,'Acceptance 3','\0',NULL),(4,'Start learning Play framework using Scala','Go to Play Framework page. Download tutorials and examples.',1,'Acceptance 4','','This task will be blocked until Devin realize that he has to hire me by hook or by crook'),(5,'Start Kanbankaze as an Open Source Project','Create a new Play Project usign Activator',3,'Acceptance 5','\0',NULL);
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +249,7 @@ CREATE TABLE `user_access_tokens` (
 
 LOCK TABLES `user_access_tokens` WRITE;
 /*!40000 ALTER TABLE `user_access_tokens` DISABLE KEYS */;
-INSERT INTO `user_access_tokens` VALUES ('YmY1NjliZGMtNWI2NS00YjA3LTgwYjYtYWY5NTRmY2NhMGJm','NDE5YmVlZmItOTAxZS00NDE0LWIzMzQtZjJkZDU4NTdjZWI1','£ô–XÆ¨Aj¸ûaµ£ƒ',NULL,3600,'2015-04-26 19:58:59','web-application');
+INSERT INTO `user_access_tokens` VALUES ('ZWVjMmI0ZTAtY2MyNC00ZmQ1LTk3YWQtOTI4Y2I1NGY2YjFh','YzYyNDMyMDMtYjRhMC00NmU0LThlOGMtZDY2NTE3OWU1Njcw','£ô–XÆ¨Aj¸ûaµ£ƒ',NULL,3600,'2015-04-27 12:23:25','web-application');
 /*!40000 ALTER TABLE `user_access_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,4 +400,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-26 21:48:21
+-- Dump completed on 2015-04-27 14:20:29

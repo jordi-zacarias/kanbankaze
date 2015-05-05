@@ -2,6 +2,10 @@ body{
     font-size: 14px;
 }
 
+textarea {
+  resize: vertical;
+}
+
 mainnav-container{
     background-color: #32404e;
 }
@@ -47,7 +51,11 @@ mainnav-container{
 }
 
 #aside{
+}
+
+#aside .aside-container{
     border-right: 4px solid #54abd9;
+    background-color: #3c4d5e;
 }
 
 .label{
@@ -164,6 +172,10 @@ mainnav-container{
     padding: 8px 6px;
     margin-bottom: 4px;
     cursor: move;
+}
+
+.task-title{
+    word-wrap: break-word;
 }
 
 .sortable-ghost {

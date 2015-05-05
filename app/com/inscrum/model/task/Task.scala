@@ -18,6 +18,7 @@ case class Task(id: Int,
                 blockedReason: Option[String]){
 
                 var users: Option[Set[UserSimple]] = None
+                var position: Int = 0
 }
 
 class TaskTable (tag: Tag) extends Table[Task](tag, "TASK") {
